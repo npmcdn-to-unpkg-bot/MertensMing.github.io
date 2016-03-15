@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mertens - 期末作业</title>
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+	<meta name="viewport" content="width=device-width"/>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<!-- 小黄条 -->
+	<div id="head-top" class="g-head-top ">
+		<div class="m-tips f-cb">
+			<p class="u-help">网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！ <a href="#" class="f-fr">  立即查看></a></p>
+			<div class="u-hide f-fr f-csp"><p class="f-fr">不再提醒</p></div>
+		</div>
+	</div>
+	<!-- /小黄条 -->
+
+	<!-- 头部 -->
+	<div class="g-hd" id="head">
+		<div class="m-logo-wrap">
+			<h1 class="m-logo f-fl">
+				<a href="#">
+					
+				</a>
+			</h1>
+		</div>
+		<div class="m-follow f-ib">
+			<a href="#" class="u-btn f-ib">关注</a>
+			<span>粉丝 45</span>
+		</div>
+		<div class="m-cancel">
+			<div class="u-btn f-ib">
+				<a href="#" class="f-ib f-fr">取消</a>
+			</div>
+			<span class="f-fr">粉丝 46</span>
+		</div>
+
+		<div class="m-nav f-fr">
+			<ul>
+				<li class="u-sch"><a href="#"></a></li>
+				<li class="u-tt2"><a href="http://www.icourse163.org/" target="_blank">中国大学MOOC</a></li>
+				<li class="u-tt1"><a href="http://study.163.com/" target="_blank">云课堂</a></li>
+				<li class="u-tt0"><a href="http://open.163.com/" target="_blank">网易公开课</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /头部 -->
+
+	<!-- 登录框 -->
+	<div  class="m-login">
+		<div class="m-wrap f-pr">
+			<span class="u-close-btn">关闭</span>
+			<form class="m-form" name="loginForm" target="result" autocomplete="off">
+				<legend class="u-tt">登录网易云课堂</legend>
+				<fieldset>
+					<div>
+						<label for="userName" class="u-tip0">用户名</label>
+						<input type="text" id="userName" name="userName" class="u-un u-ipt">
+					</div>
+					<div>
+						<label for="password" class="u-tip1">密码</label>
+						<input type="password" id="password" name="password" class="u-psd u-ipt">
+					</div>
+					<div class="u-btn">
+						<button name="loginBtn" type="submit">登  录</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<iframe name="result" id="result" style="display:none;"></iframe>
+	</div>
+	<!-- /登录框 -->
+
+	<!-- 轮播图 -->
+	<div class="g-ban-fix" id="ban-fix">
+		<div class="m-ban f-pr">
+			<div class="m-wrap">
+				<a href="http://open.163.com/" target="_blank"><img src="img/banner1.jpg" alt=""></a>
+			</div>
+			<div class="u-btn">
+				<span  class="active"></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- /轮播图 -->
+
+	<!-- 产品介绍 -->
+	<div class="m-pdt">
+			<div class="m-wrap0 f-fl">
+				<div class="u-logo0 u-logo f-fl"></div>
+				<div class="m-int">
+					<h3 class="u-tit">网易公开课</h3>
+					<p>推出国内外名校公开课，涉及广泛的学科，名校老师认真讲解深度剖析，网易视频公开课频道搭建起强有力的网络视频教学平台。</p>
+					<a href="http://open.163.com/" target="_blank">了解更多 ></a>
+				</div>
+			</div>
+			<div class="m-wrap1 f-fl">
+				<div class="u-logo1 u-logo f-fl"></div>
+				<div class="m-int">
+					<h3 class="u-tit">云课堂</h3>
+					<p>网易旗下大型在线学习平台，该平台面向学习者提供海量免费、优质课程,创新的个性化学习体验，自由开放的交流互动环境。</p>
+					<a href="http://study.163.com/" target="_blank">了解更多 ></a>
+				</div>
+			</div>
+			<div class="m-wrap2 f-fl">
+				<div class="u-logo2 u-logo f-fl"></div>
+				<div class="m-int">
+					<h3 class="u-tit">中国大学MOOC</h3>
+					<p>是爱课程网携手云课堂打造的在线学习平台，每一个有提升愿望的人,都可以在这里学习中国最好的大学课程，学完还能获得认证证书。</p>
+					<a href="http://www.icourse163.org/" target="_blank">了解更多 ></a>
+				</div>
+			</div>
+	</div>
+	<!-- /产品介绍 -->
+	
+	<!-- 工作环境 -->
+	<div class="m-pic-wrap">
+		<img src="css/office.jpg" alt="">
+		<img src="css/office2.jpg" alt="">
+		<img src="css/office3.jpg" alt="">
+		<img src="css/office4.jpg" alt="">
+		<img src="css/office5.jpg" alt="">
+	</div>
+	<!-- /工作环境 -->
+
+	<!-- 内容区 -->
+	<div class="m-ct-bgc f-cb">
+		<div id="ct" class="f-cb m-ct"> 
+			<div class="m-main f-cb">
+				<div class="m-tab f-cb">
+					<div class="active" id="pro-design">产品设计</div>
+					<div id="pro-language">编程语言</div>
+				</div>
+				<div id="course" class="m-course f-pr">
+					<ul class="f-cb">
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li>
+							<div class="m-item">
+								<div class="u-pic">
+									<a href=""><img src="" alt=""></a>
+								</div>
+								<div class="u-tt"><a href=""></a></div>
+								<div class="u-pder"></div>
+								<div class="u-count"><span></span></div>
+								<div class="u-price"></div>
+							</div>
+						</li>
+						<li class="m-crt">
+							<div class="m-hover f-cb">
+								<div class="u-pic"><a href=""><img src="" alt=""></a></div>
+								<div class="m-ifn f-fl">
+									<div class="u-tt"><h3></h3></div>
+									<div class="u-count"><span></span></div>
+									<div class="u-pder"></div>
+									<div class="u-ctn"></div>
+								</div>
+							<div class="m-des">
+								<div class="m-des-wrap"><p></p></div>
+							</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="m-page f-fr">
+					<a href="#" class="u-btn">&lt;</a>
+					<a href="#">1</a>
+					<a href="#" class="active">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+					<a href="#">5</a>
+					<a href="#">6</a>
+					<a href="#">7</a>
+					<a href="#">8</a>
+					<a href="#" class="u-btn u-next">&gt;</a>
+				</div>
+			</div>
+			<div class="m-side">
+				<div class="m-wrap0">
+					<div class="u-tt"><h3>机构介绍</h3></div>
+					<div class="m-video">
+						<p>观看下面的视频来了解吧：</p>
+						<a href="javascript:;"><img src="css/video.png" alt=""></a>
+					</div>
+				</div>
+				<div class="m-hot">
+					<div class="u-tt"><h3>最热排行</h3></div>
+					<div class="m-wrap1">
+						<ul id="hot-list" class="m-lst">
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+							<li class="f-cb">
+								<div class="u-pic"><img src="" alt=""></div>
+								<div class="m-int">
+									<div class="u-link"><a href=""></a></div>
+									<div class="u-num"><span></span></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /内容区 -->
+
+	<!-- 视频播放区 -->
+	<div class="m-pl-video" id="palyBlock">
+		<div class="m-wrap">
+			<h3>请观看下面的视频</h3>
+			<span class="u-close-btn">关闭</span>
+			<div class="u-box">
+				<video width="889" height="538" controls >
+					<source src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4">
+					您的浏览器不支持Video标签。
+				</video>
+			</div>
+		</div>
+	</div>
+	<!-- /视频播放区 -->
+
+	<!-- 页脚 -->
+	<div class="g-ft">
+		<div class="m-wrap">
+			<div class="m-cr f-fl">
+				<div class="u-logo"></div>
+				<p>©2014 icourse163.org 浙ICP备08114786号-1</p>
+				<p>icourses.cn 京ICP备12020869号-2 京公网安备110102000459-2</p>
+			</div>
+			<div class="m-link f-fl">
+				<h3>友情链接：</h3>
+				<div><a href="">网易云课堂</a></div>
+				<div><a href="">网易公开课</a></div>
+				<div><a href="">中国大学MOOC</a></div>
+			</div>
+			<div class="m-cnt f-fl">
+				<h3>我们：</h3>
+				<div><a href="">关于</a></div>
+				<div><a href="">联系</a></div>
+				<div class="f-pr">
+					<a href="" id="f">关注<span></span></a>
+				</div>
+			</div>
+			<div class="m-more f-fl"><span></span>
+				<h3>更多：</h3>
+				<div><a href="">常见问题</a></div>
+				<div><a href="">意见反馈</a></div>
+			</div>
+		</div>
+	</div>
+	<!-- /页脚 -->
+<script src="js/Md5.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
