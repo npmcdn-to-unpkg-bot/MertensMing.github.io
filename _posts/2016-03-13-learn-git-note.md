@@ -21,8 +21,6 @@ tags: Git
 
 打开 `Git Bash`：
 
-<img src="1.jpg" alt="">
-
 ```html
 $ mkdir public  创建一个目录
 $ cd public  进入该目录
@@ -59,7 +57,7 @@ $ git add readme2.txt readme3.txt 添加多个文件
 
 初次克隆某个仓库时，工作目录中的所有文件都属于已跟踪文件，且状态为未修改。
 
-<img src="1.jpg" title="文件的状态变化周期">
+<img src="2.jpg" title="文件的状态变化周期">
 
 ### 检查当前文件状态
 
@@ -351,7 +349,7 @@ $ git merge --no-ff -m "merge with no-ff" dev
 2. 干活都在`dev`分支上，也就是说，`dev`分支是不稳定的，到某个时候，比如`1.0`版本发布时，再把dev分支合并到`master`上，在`master`分支发布`1.0`版本；
 3. 你和你的小伙伴们每个人都在`dev`分支上干活，每个人都有自己的分支，时不时地往`dev`分支上合并就可以了。
 
-<img src="2.jpg" title="团队合作的分支看起来就像这样">
+<img src="1.jpg" title="团队合作的分支看起来就像这样">
 
 ### Bug分支
 
@@ -458,6 +456,105 @@ If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
 $ git branch -D feature-vulcan
 Deleted branch feature-vulcan (was 756d4af).
 ```
+
+### 多人协作
+
+当你从远程仓库克隆时，实际上Git自动把本地的`master`分支和远程的`master`分支对应起来了，并且，远程仓库的默认名称是`origin`。
+
+要查看远程库的信息，用`git remote`：
+
+```html
+$ git remote
+```
+
+或者，用`git remote -v`显示更详细的信息：
+
+```html
+$ git remote -v
+```
+
+显示了可以抓取和推送的`origin`的地址。如果没有推送权限，就看不到`push`的地址。
+
+#### 推送分支
+
+推送分支，就是把该分支上的所有本地提交推送到远程库。
+
+推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
+
+```html
+$ git push origin master
+```
+
+如果要推送其他分支，比如`dev`，就改成：
+
+```html
+$ git push origin dev
+```
+
+但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
+
+- `master`分支是主分支，因此要时刻与远程同步；
+- `dev`分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+- `bug`分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+- `feature`分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
+
+#### 抓取分支
+
+多人协作时，大家都会往`master`和`dev`分支上推送各自的修改。
+
+现在，模拟一个小伙伴，可以在另一台电脑（注意要把SSH Key添加到GitHub）或者同一台电脑的另一个目录下克隆：
+
+```html
+$ git clone git@github.com:michaelliao/learngit.git
+```
+
+当小伙伴从远程库`clone`时，默认情况下，小伙伴只能看到本地的`master`分支，可以用`git branch`命令看看：
+
+```html
+$ git branch
+```
+
+现在，小伙伴要在`dev`分支上开发，就必须创建远程`origin`的`dev`分支到本地，于是他用这个命令创建本地`dev`分支：
+
+```html
+$ git checkout -b dev origin/dev
+```
+
+你的小伙伴已经向`origin/dev`分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送:
+
+推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，Git已经提示我们，先用`git pull`把最新的提交从`origin/dev`抓下来，然后，在本地合并，解决冲突，再推送：
+
+```html
+$ git pull
+```
+
+如果 `git pull`也失败了，原因是没有指定本地`dev`分支与远程`origin/dev`分支的链接，根据提示，设置`dev`和`origin/dev`的链接：
+
+```html
+$ git branch --set-upstream dev origin/dev
+```
+
+再pull：
+
+```html
+$ git pull
+```
+
+这回`git pull`成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。解决后，提交，再`push`：
+
+因此，多人协作的工作模式通常是这样：
+
+首先，可以试图用`git push origin branch-name`推送自己的修改；
+
+如果推送失败，则因为远程分支比你的本地更新，需要先用`git pull`试图合并；
+
+如果合并有冲突，则解决冲突，并在本地提交；
+
+没有冲突或者解决掉冲突后，再用`git push origin branch-name`推送就能成功！
+
+如果`git pull`提示`“no tracking information”`，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream branch-name origin/branch-name`。
+
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 
 
 
