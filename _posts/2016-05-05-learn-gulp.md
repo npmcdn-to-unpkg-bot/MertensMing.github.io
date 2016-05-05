@@ -1,37 +1,37 @@
 ---
-title: Gulp 入门笔记
+title: Gulp 入门 —— 安装到运行
 date: 2016-05-05 15:40:12
 tags: [前端自动化]
 ---
 **学习资料**
 
-[gulp详细入门教程](http://www.ydcss.com/archives/18)
+[Gulp详细入门教程](http://www.ydcss.com/archives/18)
 
 ## 简介
 
-`gulp`是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；
+`Gulp`是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；
 
 1. 她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；
 2. 使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。
 
-`gulp`是基于`Nodejs`的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的`测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成`，`并监听文件在改动后重复指定的这些步骤`。
+`Gulp`是基于`Nodejs`的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的`测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成`，`并监听文件在改动后重复指定的这些步骤`。
 
-本示例以`gulp-less`为例（`将less编译成css的gulp插件`）展示`gulp`的常规用法，只要我们学会使用一个gulp插件后，其他插件就差看看其帮助文档了。
+本示例以`Gulp-less`为例（`将less编译成css的Gulp插件`）展示`Gulp`的常规用法，只要我们学会使用一个Gulp插件后，其他插件就差看看其帮助文档了。
 
-## 使用gulp的步骤
+## 使用Gulp的步骤
 
-1. 首先`安装nodejs`，通过nodejs的`npm全局安装`和`项目安装gulp`
-2. 其次`在项目里安装所需要的gulp插件`
-3. 然后`新建gulp的配置文件gulpfile.js`并`写好配置信息`（定义gulp任务）
-4. 最后`通过命令提示符运行gulp任务`即可。
+1. 首先`安装nodejs`，通过nodejs的`npm全局安装`和`项目安装Gulp`
+2. 其次`在项目里安装所需要的Gulp插件`
+3. 然后`新建Gulp的配置文件Gulpfile.js`并`写好配置信息`（定义Gulp任务）
+4. 最后`通过命令提示符运行Gulp任务`即可。
 
-`安装nodejs` -> `全局安装gulp` -> `项目安装gulp以及gulp插件` -> `配置gulpfile.js` -> `运行任务`
+**`安装nodejs` -> `全局安装Gulp` -> `项目安装Gulp以及Gulp插件` -> `配置Gulpfile.js` -> `运行任务`**
 
 ## 安装 Node.js 
 
 **说明：**
 
-gulp是基于nodejs，理所当然需要安装nodejs；
+Gulp是基于nodejs，理所当然需要安装nodejs；
 
 **安装：**
 
@@ -59,11 +59,22 @@ gulp是基于nodejs，理所当然需要安装nodejs；
 
 ### 使用npm安装插件
 
-命令提示符执行`npm install <name> [-g] [--save-dev]`；
+命令提示符执行
 
-- `<name>`：node插件名称。例：`npm install gulp-less --save-dev`
+```html
+npm install <name> [-g] [--save-dev]
+```
+
+`<name>`：node插件名称。
+
+例：
+
+```html
+npm install Gulp-less --save-dev
+```
+
 - `-g`：全局安装。将会安装在`C:\Users\Administrator\AppData\Roaming\npm`，并且写入系统环境变量；  
-- `非全局安装`：将会安装在当前定位目录；  
+- `非全局安装`：将会安装在当前定位目录
 - `全局安装`可以通过命令行在任何地方调用它，`本地安装`将安装在`定位目录的node_modules文件夹`下，通过`require()调用`；
 - `--save`：将保存配置信息至`package.json`（package.json是 **nodejs项目配置文件**）；
 - `-dev`：保存至package.json的`devDependencies节点`，`不指定-dev将保存至dependencies节点`；
@@ -74,17 +85,35 @@ gulp是基于nodejs，理所当然需要安装nodejs；
 
 ### 使用npm卸载插件
 
-`npm uninstall <name> [-g] [--save-dev]`  PS：不要直接删除本地插件包
+```html 
+npm uninstall <name> [-g] [--save-dev]
+```
+
+PS：不要直接删除本地插件包
 
 ### 使用npm更新插件
 
-`npm update <name> [-g] [--save-dev]`
+```html
+npm update <name> [-g] [--save-dev]
+```
 
-更新全部插件：`npm update [--save-dev]`
+更新全部插件：
 
-查看npm帮助：npm help
+```html
+npm update [--save-dev]
+```
 
-当前目录已安装插件：npm list
+查看npm帮助：
+
+```html
+npm help
+```
+
+当前目录已安装插件：
+
+```html
+npm list
+```
 
 ## 选装cnpm
 
@@ -96,7 +125,11 @@ gulp是基于nodejs，理所当然需要安装nodejs；
 
 **安装：**
 
-命令提示符执行 `npm install cnpm -g --registry=https://registry.npm.taobao.org；`  
+命令提示符执行 
+
+```html
+npm install cnpm -g --registry=https://registry.npm.taobao.org
+```
 
 **注意：**
 
@@ -131,3 +164,77 @@ gulp是基于nodejs，理所当然需要安装nodejs；
   }
 }
 ```
+
+我们可以`手动新建这个配置文件`，但是作为一名有志青年，我们应该使用更为效率的方法：
+
+**命令提示符执行**
+
+```html 
+cnpm init
+```
+
+<img src="2.jpg">
+
+## 本地安装Gulp插件
+
+1、`定位目录`命令后提示符执行
+
+```html 
+cnpm install --save-dev
+```
+
+<img src="3.jpg">
+
+2、本示例以`gulp-less为例（编译less文件）`，命令提示符执行
+
+```html
+cnpm install gulp-less --save-dev
+```
+
+3、将会安装在`node_modules`的`gulp-less目录`下，该目录下有一个`gulp-less的使用帮助文档`README.md；
+
+4、为了能正常使用，我们还得本地安装 Gulp 
+
+```html
+cnpm install gulp --save-dev
+```
+
+PS：细心的你可能会发现，**我们全局安装了gulp**，**项目也安装了gulp**，`全局安装gulp是为了执行gulp任务`，`本地安装gulp则是为了调用gulp插件的功能`。
+
+## 新建gulpfile.js文件（重要）
+
+gulpfile.js是gulp项目的配置文件，是位于项目`根目录的普通js文件`（其实将gulpfile.js放入其他文件夹下亦可）。
+
+它大概是这样一个js文件
+
+```js 
+//导入工具包 require('node_modules里对应模块')
+var gulp = require('gulp'), //本地安装gulp所用到的地方
+    less = require('gulp-less');
+ 
+//定义一个testLess任务（自定义任务名称）
+gulp.task('testLess', function () {
+    gulp.src('src/less/index.less') //该任务针对的文件
+        .pipe(less()) //该任务调用的模块
+        .pipe(gulp.dest('src/css')); //将会在src/css下生成index.css
+});
+ 
+gulp.task('default',['testLess', 'elseTask']); //定义默认任务
+ 
+//gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数
+//gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组) 
+//gulp.dest(path[, options]) 处理完后文件生成路径
+```
+
+## 运行gulp
+
+说明：命令提示符执行 `gulp` 任务名称；
+
+编译less：
+
+```html 
+gulp testLess
+```
+
+当执行 **`gulp default`**或 **`gulp`**将会调用 **`default`** 任务里的所有任务 **`[‘testLess’,’elseTask’]`**。
+
