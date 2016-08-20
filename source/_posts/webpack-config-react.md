@@ -197,7 +197,7 @@ var config = require('./webpack.config');
 这个 server 需要 webpack、webpack-dev-server 还有我们之前定义好的配置文件（webpack.config.js）
 
 ```js
-new WebpackDevServer(webpack(config), {
+new WebpackDevServer(webpack(config), {   
     publicPath: config.output.publicPath,
     hot: true,
     historyApiFallback: true,
