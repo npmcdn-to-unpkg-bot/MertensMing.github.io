@@ -203,7 +203,7 @@ new WebpackDevServer(webpack(config), {
     historyApiFallback: true,
     stats: {
         colors: true
-    }
+    }  
 }).listen(3000, 'localhost', function (err) {
     if (err) {
         console.log(err);
