@@ -287,45 +287,13 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是同一个示例，<a href="http://jpsierens.com/simple-react-redux-application/" target="_blank" rel="external">原文在这里</a>，这里讲介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。</p>
-<h2 id="ES6-amp-Babel"><a href="#ES6-amp-Babel" class="headerlink" title="ES6 &amp; Babel"></a>ES6 &amp; Babel</h2><p>在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 <code>babel</code> 的官网，那里有一个 <a href="http://babeljs.cn/repl/" target="_blank" rel="external"><strong>在线实验</strong></a> 的功能，把看不懂的代码粘贴过去，大部分其实都可以理解了。</p>
-<p><strong><code>tip</code></strong>：babel 是一个 JavaScript 的编译器，可以将 ES6 甚至是 ES7 的代码编译成 ES5 的代码。</p>
-<h2 id="entry-——-index-js"><a href="#entry-——-index-js" class="headerlink" title="entry —— index.js"></a>entry —— index.js</h2><p>在这个例子里面，<code>/app/index.js</code> 是整个应用的入口文件。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'babel-polyfill'</span>;</div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"><span class="keyword">import</span> &#123; syncHistoryWithStore &#125; <span class="keyword">from</span> <span class="string">'react-router-redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppContainer &#125; <span class="keyword">from</span> <span class="string">'react-hot-loader'</span>;</div><div class="line"><span class="keyword">import</span> configureStore <span class="keyword">from</span> <span class="string">'./store/configureStore'</span>;</div><div class="line"><span class="keyword">import</span> Root <span class="keyword">from</span> <span class="string">'./containers/Root'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'./styles/main.scss'</span>;</div><div class="line"> </div><div class="line"><span class="keyword">const</span> store = configureStore();</div><div class="line"><span class="keyword">const</span> history = syncHistoryWithStore(browserHistory, store);</div><div class="line"> </div><div class="line">render(</div><div class="line">    &lt;AppContainer&gt;</div><div class="line">        &lt;Root store=&#123;store&#125; history=&#123;history&#125; /&gt;</div><div class="line">    &lt;/AppContainer&gt;,</div><div class="line">    document.getElementById('root')</div><div class="line">);</div><div class="line"> </div><div class="line">if (module.hot) &#123;</div><div class="line">    module.hot.accept('./containers/Root', () =&gt; &#123;</div><div class="line">        const Root = require('./containers/Root').default;</div><div class="line">        render(</div><div class="line">            &lt;AppContainer&gt;</div><div class="line">                &lt;Root store=&#123;store&#125; history=&#123;history&#125; /&gt;</div><div class="line">            &lt;/AppContainer&gt;,</div><div class="line">            document.getElementById('root')</div><div class="line">        );</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>看到这么多的 import 其实是挺晕的，我们来一个一个的看这些 import 到底都是做什么用的。</p>
-<ul>
-<li><code>babel-polyfill</code> 它支持一些 ES6 的新特性，<code>Object.assign()</code> <code>Promises</code> <code>Generators</code></li>
-<li><code>React</code>          使我们构建组件的框架</li>
-<li><code>react-dom</code>      我们从它里面导出 <code>render</code> 方法把根组件渲染成 DOM</li>
-<li><code>browserHistory</code> 这个对象是从 <code>React-router</code> 导出的，它可以让我们操作路由</li>
-<li><code>syncHistoryWithStore</code> 这个方法来自 <code>react-router-redux</code>，它可以同步浏览器的 <code>history</code> 和 <code>redux</code> 的 <code>store</code>。每当 <code>router</code> 变更的时候也就相当于向 <code>store</code> 发送一个 <code>action</code></li>
-<li><code>AppContainer</code> 这是一个让 <code>react</code> 可以热加载的容器，所谓热加载就是你更改了代码不用刷新就可以在浏览器端实时的展示出来</li>
-<li><code>configureStore</code> 是一个非常有用的方法，可以让我们配置 <code>store</code></li>
-<li><code>Root</code> 是最顶级的 <code>react</code> 组件，相当于是所有组件的入口</li>
-<li><code>styling</code> 样式这里也是直接 <code>import</code> 进来的。<code>webpack</code> 把样式打包进了 <code>JavaScript</code> 文件里面，这样可以让样式也更加模块化</li>
-</ul>
-<p>就这样，我们通过 <code>index.js</code>，把所有的需要的东西都加载进来了。</p>
-<p>当所有东西都加载完成之后，我们就用了一个 <code>configureStore()</code> 方法来配置 <code>redux</code> 的 <code>store</code>。等下写到 <code>configureStore.js</code> 的时候我们再详细看看。</p>
-<p>接下来，我们创建了一个叫 <code>history</code> 的变量，这个 <code>history</code> 包含着和 <code>store</code> 同步浏览器 <code>history</code>，每当浏览器 <code>history</code> 变化的时候，它就会通过 <code>router</code>，<code>dispatch</code> <code>actions</code> 给 <code>store</code>。</p>
-<p><strong>最后，这里还有一个判断。</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">module</span>.hot)</div></pre></td></tr></table></figure>
-<p>如果是在开发环境，就使用 <code>热加载</code>，每当我们更改并且保存组件里面的代码的时候，就会自动刷新。</p>
-<h2 id="store-——-ConfigureStore-js"><a href="#store-——-ConfigureStore-js" class="headerlink" title="store —— ConfigureStore.js"></a>store —— ConfigureStore.js</h2><p>还记得 index.js 里面的这一行代码吗?</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = configureStore();</div></pre></td></tr></table></figure>
-<p>我们来看看它是干嘛的，现在我们打开 <code>/app/store/configureStore.js</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</div><div class="line">    <span class="built_in">module</span>.exports = <span class="built_in">require</span>(<span class="string">'./configureStore.prod'</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">module</span>.exports = <span class="built_in">require</span>(<span class="string">'./configureStore.dev'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面这个判断你当前是在生产环境还是开发环境，然后指定输出一个 <code>configureStore</code></p>
-<p><code>process.env.NODE_ENV</code> 这是什么？<br>还记得这个<a href="../webpack-config-react.html">插件</a>吗？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">    <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'development'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>上面那个变量在 <code>webpack.config.js</code> <code>webpack.production.config.js</code> 分别被设置为 <code>production</code> 和 <code>development</code></p>
-<h3 id="development-version-of-configureStore"><a href="#development-version-of-configureStore" class="headerlink" title="development version of configureStore"></a>development version of configureStore</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">'../reducers'</span>;</div><div class="line"><span class="keyword">import</span> DevTools <span class="keyword">from</span> <span class="string">'../containers/DevTools'</span>;</div><div class="line"> </div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">configureStore</span>(<span class="params">initialState</span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> store = createStore(</div><div class="line">        rootReducer,</div><div class="line">        initialState,</div><div class="line">        DevTools.instrument()</div><div class="line">    );</div><div class="line"> </div><div class="line">    <span class="keyword">return</span> store;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>createStore</code> 的作用就跟它的名字一样，创建一个 store，它的第一个参数 reducer，第二个参数是 initial state，第三个参数是一个扩展</li>
-<li><code>rootReducer</code> 是我们的 reducer，这个后面我们详细来讲。现在我们只要知道 reducer 是一个纯函数，传递旧的 state 和一个 action 进去，它就会返回一个新的 state</li>
-<li>DevTools 是一个给我们展示每个 state 的改变和触发它改变的 action 的工具</li>
-</ul>
-
-          
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是同一个示例，<a href="http://jpsierens.com/simple-react-redux-application/">这篇是原文</a>，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。</p>
+<h2 id="ES6-amp-Babel"><a href="#ES6-amp-Babel" class="headerlink" title="ES6 &amp; Babel"></a>ES6 &amp; Babel</h2><p>在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 <code>babel</code> 的官网，那里有一个 <a href="http://babeljs.cn/repl/"><strong>在线实验</strong></a> 的功能，把看不懂的代码粘贴过去，大部分其实都可以理解了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/20/react-redux-router/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -374,7 +342,7 @@
               
                 
                 <a class="post-title-link" href="/2016/08/20/webpack-config-react/" itemprop="url">
-                  举一反三 —— Webpack 配置
+                  Webpack 配置
                 </a>
               
             
