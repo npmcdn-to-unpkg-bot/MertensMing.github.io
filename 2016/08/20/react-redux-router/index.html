@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mertens blog FE" />
+  <meta name="keywords" content="React,前端工程," />
 
 
 
@@ -84,12 +84,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mertens Blog">
-<meta property="og:url" content="mertensming.github.io/index.html">
+<meta name="description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，原文在这里，这里讲介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。
+ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 babel 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 React、React-router 和 Redux 开发前端应用">
+<meta property="og:url" content="mertensming.github.io/2016/08/20/react-redux-router/index.html">
 <meta property="og:site_name" content="Mertens Blog">
+<meta property="og:description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，原文在这里，这里讲介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。
+ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 babel 的">
+<meta property="og:updated_time" content="2016-08-20T17:13:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mertens Blog">
+<meta name="twitter:title" content="使用 React、React-router 和 Redux 开发前端应用">
+<meta name="twitter:description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，原文在这里，这里讲介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。
+ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 babel 的">
 
 
 
@@ -110,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="mertensming.github.io/"/>
+  <link rel="canonical" href="mertensming.github.io/2016/08/20/react-redux-router/"/>
 
-  <title> Mertens Blog </title>
+  <title> 使用 React、React-router 和 Redux 开发前端应用 | Mertens Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -133,9 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -202,9 +207,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -224,10 +229,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/08/20/react-redux-router/" itemprop="url">
-                  使用 React、React-router 和 Redux 开发前端应用
-                </a>
+                使用 React、React-router 和 Redux 开发前端应用
               
             
           </h1>
@@ -286,9 +288,7 @@
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是同一个示例，<a href="http://jpsierens.com/simple-react-redux-application/" target="_blank" rel="external">原文在这里</a>，这里讲介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是同一个示例，<a href="http://jpsierens.com/simple-react-redux-application/" target="_blank" rel="external">原文在这里</a>，这里讲介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。</p>
 <h2 id="ES6-amp-Babel"><a href="#ES6-amp-Babel" class="headerlink" title="ES6 &amp; Babel"></a>ES6 &amp; Babel</h2><p>在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 <code>babel</code> 的官网，那里有一个 <a href="http://babeljs.cn/repl/" target="_blank" rel="external"><strong>在线实验</strong></a> 的功能，把看不懂的代码粘贴过去，大部分其实都可以理解了。</p>
 <p><strong><code>tip</code></strong>：babel 是一个 JavaScript 的编译器，可以将 ES6 甚至是 ES7 的代码编译成 ES5 的代码。</p>
 <h2 id="entry-——-index-js"><a href="#entry-——-index-js" class="headerlink" title="entry —— index.js"></a>entry —— index.js</h2><p>在这个例子里面，<code>/app/index.js</code> 是整个应用的入口文件。</p>
@@ -325,158 +325,61 @@
 <li>DevTools 是一个给我们展示每个 state 的改变和触发它改变的 action 的工具</li>
 </ul>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/20/webpack-config-react/" itemprop="url">
-                  举一反三 —— Webpack 配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T07:38:39+08:00" content="2016-08-20">
-              2016-08-20
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/React/" rel="tag">#React</a>
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/前端工程/" rel="tag">#前端工程</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章是我看教程整理的一些笔记，原文在<a href="http://jpsierens.com/tutorial-react-redux-webpack/">这里</a>，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，<a href="https://github.com/jpsierens/webpack-react-redux-react-router">这里</a>是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读<a href="http://jpsierens.com/tutorial-react-redux-webpack/">原文</a>。</p>
-<h2 id="React-Redux-React-Router"><a href="#React-Redux-React-Router" class="headerlink" title="React, Redux, React-Router"></a>React, Redux, React-Router</h2><p>假定你已经知道这三个东西是什么了（如果不知道赶紧去查文档）。</p>
-<ul>
-<li><a href="https://www.gitbook.com/book/chenyitian/react-docs/details">React 中文文档</a></li>
-<li><a href="http://cn.redux.js.org/index.html">Redux 中文文档</a></li>
-<li><a href="https://react-guide.github.io/react-router-cn/">React Router 中文文档</a></li>
-</ul>
-<h2 id="Webpack-Config"><a href="#Webpack-Config" class="headerlink" title="Webpack Config"></a>Webpack Config</h2><p>下面，我们就来开始我们应用最核心的一部分：webpack 的配置文件。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/20/webpack-config-react/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/20/webpack-config-react/" rel="next" title="举一反三 —— Webpack 配置">
+                <i class="fa fa-chevron-left"></i> 举一反三 —— Webpack 配置
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -484,6 +387,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -503,8 +410,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -554,6 +470,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-amp-Babel"><span class="nav-number">2.</span> <span class="nav-text">ES6 & Babel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#entry-——-index-js"><span class="nav-number">3.</span> <span class="nav-text">entry —— index.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#store-——-ConfigureStore-js"><span class="nav-number">4.</span> <span class="nav-text">store —— ConfigureStore.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#development-version-of-configureStore"><span class="nav-number">4.1.</span> <span class="nav-text">development version of configureStore</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -650,6 +577,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
