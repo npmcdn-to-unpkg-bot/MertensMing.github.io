@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，这篇是原文，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。
-ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 babel">
+<meta name="description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。原文 part1原文 part2
+ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 React、React-router 和 Redux 开发前端应用">
 <meta property="og:url" content="mertensming.github.io/2016/08/20/react-redux-router/index.html">
 <meta property="og:site_name" content="Mertens Blog">
-<meta property="og:description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，这篇是原文，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。
-ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 babel">
-<meta property="og:updated_time" content="2016-08-21T12:08:08.000Z">
+<meta property="og:description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。原文 part1原文 part2
+ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系">
+<meta property="og:updated_time" content="2016-08-22T13:36:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 React、React-router 和 Redux 开发前端应用">
-<meta name="twitter:description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，这篇是原文，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。
-ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 babel">
+<meta name="twitter:description" content="前言这篇笔记是接着上一篇的，使用的是同一个示例，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。原文 part1原文 part2
+ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系">
 
 
 
@@ -288,7 +288,7 @@ ES6 &amp;amp; Babel在理解这个例子的时候，你需要去了解一下 ES6
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是同一个示例，<a href="http://jpsierens.com/simple-react-redux-application/" target="_blank" rel="external">这篇是原文</a>，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是<a href="https://github.com/jpsierens/webpack-react-redux-react-router" target="_blank" rel="external">同一个示例</a>，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。<br><a href="http://jpsierens.com/simple-react-redux-application/" target="_blank" rel="external">原文 part1</a><br><a href="http://jpsierens.com/simple-react-redux-application-2/" target="_blank" rel="external">原文 part2</a></p>
 <h2 id="ES6-amp-Babel"><a href="#ES6-amp-Babel" class="headerlink" title="ES6 &amp; Babel"></a>ES6 &amp; Babel</h2><p>在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 <code>babel</code> 的官网，那里有一个 <a href="http://babeljs.cn/repl/" target="_blank" rel="external"><strong>在线实验</strong></a> 的功能，把看不懂的代码粘贴过去，大部分其实都可以理解了。</p>
 <a id="more"></a>
 <p><strong><code>tip</code></strong>：babel 是一个 JavaScript 的编译器，可以将 ES6 甚至是 ES7 的代码编译成 ES5 的代码。</p>
