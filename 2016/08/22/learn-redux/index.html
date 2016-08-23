@@ -1,0 +1,606 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。
+
+如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux 学习笔记">
+<meta property="og:url" content="mertensming.github.io/2016/08/22/learn-redux/index.html">
+<meta property="og:site_name" content="Mertens Blog">
+<meta property="og:description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。
+
+如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，">
+<meta property="og:updated_time" content="2016-08-23T11:05:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redux 学习笔记">
+<meta name="twitter:description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。
+
+如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="mertensming.github.io/2016/08/22/learn-redux/"/>
+
+  <title> Redux 学习笔记 | Mertens Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mertens Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Redux 学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T23:20:22+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么需要-Redux？"><a href="#为什么需要-Redux？" class="headerlink" title="为什么需要 Redux？"></a>为什么需要 Redux？</h2><p>去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。</p>
+<blockquote>
+<p>如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。<br>如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。</p>
+</blockquote>
+<p>—— <a href="http://cn.redux.js.org/index.html" target="_blank" rel="external">《Redux 文档》</a></p>
+<p>上面提到的复杂性很大程度来自于： <strong><code>我们总是将两个难以厘清的概念混淆在一起：变化和异步。</code></strong></p>
+<p>这句话深有感触，同意 +1！！！！有上面那么多东西，写代码的时候已经足够让人炸裂了。</p>
+<a id="more"></a>
+<h2 id="Redux-的三大原则"><a href="#Redux-的三大原则" class="headerlink" title="Redux 的三大原则"></a>Redux 的三大原则</h2><h3 id="单一数据源"><a href="#单一数据源" class="headerlink" title="单一数据源"></a>单一数据源</h3><p>整个应用的 state 被存放在一个 对象(object) 里面，而这个对象被只存在于唯一的一个 store 中。就是说整个应用的 state 都需要通过这个 store 来管理。</p>
+<h3 id="只读的-state"><a href="#只读的-state" class="headerlink" title="只读的 state"></a>只读的 state</h3><p>惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。需要注意的就是，你不能去修改 state，要想改变 state，只能返回一个新的 state，而不能在原来的基础上修改。</p>
+<h3 id="使用纯函数（Reducer）改变-state"><a href="#使用纯函数（Reducer）改变-state" class="headerlink" title="使用纯函数（Reducer）改变 state"></a>使用纯函数（Reducer）改变 state</h3><p>为了描述 action 如何改变 state 的 ，需要编写 reducers。Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。<br>ps：不要把 reducer 想象得太复杂，其实就是一个函数，接收 state 和 action，根据 action 返回新的 state 或者旧的 state。</p>
+<h2 id="一些基础知识"><a href="#一些基础知识" class="headerlink" title="一些基础知识"></a>一些基础知识</h2><h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>简单的来说，action 就是一个对象</p>
+<ol>
+<li>这个对象必须包含 type 字段，通常都是大写字母的形式</li>
+<li>其他属性你可以随便定义</li>
+<li>但是！这里有个参考，让你定义<a href="https://github.com/acdlite/flux-standard-action" target="_blank" rel="external">标准的 action</a>，当然，你也可以不去理会。</li>
+<li>可以通过 store.dispatch() 将 action 传到 store。</li>
+</ol>
+<h3 id="action-creator"><a href="#action-creator" class="headerlink" title="action creator"></a>action creator</h3><p>顾名思义，action creator 就是生成 action 的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTodo</span>(<span class="params">text</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    type: ADD_TODO,</div><div class="line">    text</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="发送-action"><a href="#发送-action" class="headerlink" title="发送 action"></a>发送 action</h3><ol>
+<li>redux 只需要把 action creator 的结果传递给 dispatch 方法即可发起一次 dispatch 过程。</li>
+<li>或者创建一个被绑定的 action creator 来自动 dispatch</li>
+<li>使用 <a href="http://cn.redux.js.org/docs/api/bindActionCreators.html" target="_blank" rel="external"><code>bindActionCreaters(actionCreators, dispatch)</code></a> 方法来绑定 action，最后调用的时候直接 dispatch</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> boundAddTodo = (text) =&gt; dispatch(addTodo(text))</div><div class="line"><span class="keyword">const</span> boundCompleteTodo = (index) =&gt; dispatch(completeTodo(index))</div><div class="line">boundAddTodo(text);</div><div class="line">boundCompleteTodo(index);</div><div class="line"></div><div class="line"><span class="comment">/*bindActionCreators方法返回的其实是一个对象，调用它里面的方法即可完成 dispatch*/</span></div><div class="line"><span class="keyword">let</span> boundActionCreators = bindActionCreators(TodoActionCreators, dispatch);</div><div class="line"><span class="built_in">console</span>.log(boundActionCreators);</div><div class="line"><span class="comment">// &#123;</span></div><div class="line"><span class="comment">//   addTodo: Function,</span></div><div class="line"><span class="comment">//   removeTodo: Function</span></div><div class="line"><span class="comment">// &#125;</span></div></pre></td></tr></table></figure>
+<p>那么问题来了，dispatch 方法从哪里来呢？这是一个值得注意的问题，我们需要记住，dispatch 来自 store，是 store 里面的方法。</p>
+<h3 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h3><h4 id="处理-action"><a href="#处理-action" class="headerlink" title="处理 action"></a>处理 action</h4><p>reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(previousState, action) =&gt; newState</div></pre></td></tr></table></figure>
+<h4 id="保持-reducer-纯净"><a href="#保持-reducer-纯净" class="headerlink" title="保持 reducer 纯净"></a>保持 reducer 纯净</h4><p>永远不要在 reducer 里做这些操作：</p>
+<ul>
+<li>修改传入参数；</li>
+<li>执行有副作用的操作，如 API 请求和路由跳转；</li>
+<li>调用非纯函数，如 <code>Date.now()</code> 或 <code>Math.random()</code>。</li>
+</ul>
+<p>只要传入参数相同，返回计算得到的下一个 state 就一定相同。<br>没有特殊情况、没有副作用，没有 API 请求、没有变量修改，单纯执行计算。</p>
+<h4 id="编写-reducer"><a href="#编写-reducer" class="headerlink" title="编写 reducer"></a>编写 reducer</h4><h5 id="设置-state-的初始状态"><a href="#设置-state-的初始状态" class="headerlink" title="设置 state 的初始状态"></a>设置 state 的初始状态</h5><p>Redux 首次执行时，state 为 undefined，此时我们可借机设置并返回应用的初始 state。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; VisibilityFilters &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</div><div class="line"><span class="keyword">const</span> initialState = &#123;</div><div class="line">    visibilityFilter: VisibilityFilters.SHOW_ALL,</div><div class="line">    todos: [];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span> (<span class="params">state = initialState, action</span>) </span>&#123;</div><div class="line">    <span class="comment">// 这里暂不处理任何 action，</span></div><div class="line">    <span class="comment">// 仅返回传入的 state</span></div><div class="line">    retuen state;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在我们可以处理一个 action，这个 action 会改变 state 的 visibilityFilter</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span> (<span class="params">state = initialState, action</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">        <span class="keyword">case</span> SET_VISIBILITY_FILTER:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">                visibilityFilter: action.filter</div><div class="line">            &#125;)</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> state;</div><div class="line">    &#125;</div><div class="line">    retuen state;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个地方有两点需要注意的：</p>
+<ol>
+<li>记住我们是不可以修改 state 的，所以我们使用 Object.assign() 新建了一个副本。</li>
+<li>在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</li>
+</ol>
+<h4 id="reducer-的拆分与合成：处理多个-action"><a href="#reducer-的拆分与合成：处理多个-action" class="headerlink" title="reducer 的拆分与合成：处理多个 action"></a>reducer 的拆分与合成：处理多个 action</h4><p>当我们需要处理多个 action 的时候，需要这样做。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span>(<span class="params">state = initialState, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> SET_VISIBILITY_FILTER:</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">        visibilityFilter: action.filter</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">case</span> ADD_TODO:</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">        todos: [</div><div class="line">          ...state.todos,</div><div class="line">          &#123;</div><div class="line">            text: action.text,</div><div class="line">            completed: <span class="literal">false</span></div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">case</span> TOGGLE_TODO:</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">        todos: state.todos.map((todo, index) =&gt; &#123;</div><div class="line">          <span class="keyword">if</span>(index === action.index) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, todo, &#123;</div><div class="line">              completed: !todo.completed</div><div class="line">            &#125;)</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">return</span> todo</div><div class="line">        &#125;)</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是当我们需要处理的 action 越来越多，这样管理起来就会非常混乱。所以我们需要将 reducer 拆分再重新合成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todos</span>(<span class="params">state = [], action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> ADD_TODO:</div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        ...state,</div><div class="line">        &#123;</div><div class="line">          text: action.text,</div><div class="line">          completed: <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    <span class="keyword">case</span> TOGGLE_TODO:</div><div class="line">      <span class="keyword">return</span> state.map((todo, index) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (index === action.index) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, todo, &#123;</div><div class="line">            completed: !todo.completed</div><div class="line">          &#125;)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> todo</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">visibilityFilter</span>(<span class="params">state = SHOW_ALL, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> SET_VISIBILITY_FILTER:</div><div class="line">      <span class="keyword">return</span> action.filter</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    visibilityFilter: visibilityFilter(state.visibilityFilter, action),</div><div class="line">    todos: todos(state.todos, action)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag">#React</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/20/react-redux-router/" rel="next" title="使用 React、React-router 和 Redux 开发前端应用">
+                <i class="fa fa-chevron-left"></i> 使用 React、React-router 和 Redux 开发前端应用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mertens" />
+          <p class="site-author-name" itemprop="name">Mertens</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要-Redux？"><span class="nav-number">1.</span> <span class="nav-text">为什么需要 Redux？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux-的三大原则"><span class="nav-number">2.</span> <span class="nav-text">Redux 的三大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一数据源"><span class="nav-number">2.1.</span> <span class="nav-text">单一数据源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读的-state"><span class="nav-number">2.2.</span> <span class="nav-text">只读的 state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用纯函数（Reducer）改变-state"><span class="nav-number">2.3.</span> <span class="nav-text">使用纯函数（Reducer）改变 state</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些基础知识"><span class="nav-number">3.</span> <span class="nav-text">一些基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#action"><span class="nav-number">3.1.</span> <span class="nav-text">action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#action-creator"><span class="nav-number">3.2.</span> <span class="nav-text">action creator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发送-action"><span class="nav-number">3.3.</span> <span class="nav-text">发送 action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducer"><span class="nav-number">3.4.</span> <span class="nav-text">Reducer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理-action"><span class="nav-number">3.4.1.</span> <span class="nav-text">处理 action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保持-reducer-纯净"><span class="nav-number">3.4.2.</span> <span class="nav-text">保持 reducer 纯净</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写-reducer"><span class="nav-number">3.4.3.</span> <span class="nav-text">编写 reducer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置-state-的初始状态"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">设置 state 的初始状态</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reducer-的拆分与合成：处理多个-action"><span class="nav-number">3.4.4.</span> <span class="nav-text">reducer 的拆分与合成：处理多个 action</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mertens</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -102,7 +102,7 @@
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -115,7 +115,7 @@
   <title> Mertens Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -225,6 +225,108 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/22/learn-redux/" itemprop="url">
+                  Redux 学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T23:20:22+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="为什么需要-Redux？"><a href="#为什么需要-Redux？" class="headerlink" title="为什么需要 Redux？"></a>为什么需要 Redux？</h2><p>去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。</p>
+<blockquote>
+<p>如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。<br>如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。</p>
+</blockquote>
+<p>—— <a href="http://cn.redux.js.org/index.html">《Redux 文档》</a></p>
+<p>上面提到的复杂性很大程度来自于： <strong><code>我们总是将两个难以厘清的概念混淆在一起：变化和异步。</code></strong></p>
+<p>这句话深有感触，同意 +1！！！！有上面那么多东西，写代码的时候已经足够让人炸裂了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/22/learn-redux/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/20/react-redux-router/" itemprop="url">
                   使用 React、React-router 和 Redux 开发前端应用
                 </a>
@@ -238,7 +340,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-08-20T15:00:17+08:00" content="2016-08-20">
               2016-08-20
             </time>
@@ -250,7 +352,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/JavaScript/" itemprop="url" rel="index">
@@ -291,7 +393,7 @@
 <h2 id="ES6-amp-Babel"><a href="#ES6-amp-Babel" class="headerlink" title="ES6 &amp; Babel"></a>ES6 &amp; Babel</h2><p>在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 <code>babel</code> 的官网，那里有一个 <a href="http://babeljs.cn/repl/"><strong>在线实验</strong></a> 的功能，把看不懂的代码粘贴过去，大部分其实都可以理解了。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/20/react-redux-router/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -354,7 +456,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-08-20T07:38:39+08:00" content="2016-08-20">
               2016-08-20
             </time>
@@ -366,7 +468,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Javascript/" itemprop="url" rel="index">
@@ -413,7 +515,7 @@
 <h2 id="Webpack-Config"><a href="#Webpack-Config" class="headerlink" title="Webpack Config"></a>Webpack Config</h2><p>下面，我们就来开始我们应用最核心的一部分：webpack 的配置文件。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/20/webpack-config-react/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -483,8 +585,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
@@ -492,7 +594,7 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">分类</span>
               
             </div>
           
@@ -501,7 +603,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">标签</span>
               
             </div>
           
@@ -545,11 +647,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
