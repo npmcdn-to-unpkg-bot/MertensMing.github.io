@@ -1,0 +1,211 @@
+/*
+* @Author: Mertens
+* @Date:   2016-03-10 11:23:01
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 11:30:49
+*/
+
+/*
+* 轮播图
+* 友情链接
+* 办公区域
+*/
+
+/*轮播图*/
+    .m-slide
+    {
+        position: relative;
+
+        height: 350px;
+    }
+
+    .m-slide img
+    {
+        /*消除img元素底下的空隙*/
+        display: block;
+        
+        /*轮播图自适应屏幕宽度*/
+        width: 100%;
+    }
+
+    .m-slide li
+    {
+        position: absolute;
+    }
+
+    /* 轮播图淡入动画 */
+    @-webkit-keyframes fade-in
+    {
+        0%
+        {
+            opacity: 0;
+        }
+
+        100%
+        {
+            opacity: 1;
+        }
+    }
+    @keyframes fade-in
+    {
+        0%
+        {
+            opacity: 0;
+        }
+
+        100%
+        {
+            opacity: 1;
+        }
+    }
+    /* 切换到一张图片，使用淡入动画 */
+    .m-slide li.z-crt
+    {
+        z-index: 20;
+
+        -webkit-animation: fade-in .5s linear;
+
+                animation: fade-in .5s linear;
+    }
+    .m-slide li.prev
+    {
+        z-index: 19;
+    }
+
+    /* 指示控制器 */
+    .u-pointer
+    {
+        line-height: 0;
+
+        position: absolute;
+        z-index: 50;
+        right: 0;
+        bottom: 20px;
+        left: 0;
+
+        text-align: center;
+    }
+
+    .u-pointer i
+    {
+        display: inline-block;
+
+        width: 10px;
+        height: 10px;
+        margin: 0 0 0 10px;
+
+        cursor: pointer;
+
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .u-pointer i:first-child
+    {
+        margin-left: 0;
+    }
+
+    .u-pointer i:hover
+    {
+        background: #ccc;
+    }
+
+    .u-pointer i.z-crt
+    {
+        background: #000;
+    }
+
+/*友情链接*/
+    .m-friend-links
+    {
+        margin-left: -80px;
+    }
+
+    .m-friend-links .item
+    {
+        font-size: 14px;
+        line-height: 1.7142857142857;
+
+        position: relative;
+
+        box-sizing: border-box;
+        margin: 55px 0 55px 80px;
+        padding-left: 100px;
+
+        color: #666;
+    }
+
+    .m-friend-links .u-tt
+    {
+        font-size: 22px;
+
+        color: #333;
+    }
+
+    .m-friend-links .u-text
+    {
+        width: 242px;
+        margin: 7px 0 25px;
+    }
+
+    .m-friend-links .u-logo
+    {
+        position: absolute;
+        top: 16px;
+        left: 0;
+
+        width: 80px;
+        height: 80px;
+    }
+
+    .m-friend-links a:hover
+    {
+        text-decoration: underline;
+    }
+
+    .m-friend-links .logo1
+    {
+        background: url(img/sprite.png) no-repeat 0 -154px;
+    }
+
+    .m-friend-links .logo2
+    {
+        background: url(img/sprite.png) no-repeat 0 -234px;
+    }
+
+    .m-friend-links .logo3
+    {
+        background: url(img/sprite.png) no-repeat 0 -314px;
+    }
+
+/*给办公区域、选项卡、侧栏添加背景色*/
+    .bg-color
+    {
+        background-color: #f8f8f8;
+    }
+
+/*办公区域*/
+    .slider-carousel
+    {
+        line-height: 0;
+
+        position: relative;
+
+        overflow: hidden;
+
+        width: 100%;
+        height: 220px;
+        margin-bottom: 80px;
+        padding-top: 1px;
+    }
+
+    .slide-box-wrap
+    {
+        position: absolute;
+
+        width: 9999px;
+    }
+    .slide-box
+    {
+        padding-right: 4px;
+    }

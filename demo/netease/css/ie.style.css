@@ -1,0 +1,29 @@
+/*
+* @Author: Mertens
+* @Date:   2016-03-09 12:13:56
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 10:40:47
+*/
+
+/* 
+* 兼容ie8 的样式 
+*/
+
+/*取消ie下图片边框*/
+img {
+	border: none;
+}
+
+ /*IE8支持*/
+html .mask {
+ 	/*IE8支持*/
+ 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#c8000000,endColorstr=#c8000000);    
+}
+
+.hd-bar-wrap,
+.hd-wrap,
+.links-wrap,
+.main-wrap,
+.footer-wrap {
+	overflow:hidden;
+}

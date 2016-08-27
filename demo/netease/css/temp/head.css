@@ -1,0 +1,239 @@
+/*
+* @Author: Mertens
+* @Date:   2016-03-09 12:13:56
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 11:30:32
+*/
+
+/*
+* 顶部提示条
+* 关注
+* 导航栏
+* 登录弹窗
+*/
+
+/*顶部提示条*/
+    .m-hd-bar
+    {
+        line-height: 36px;
+
+        background-color: #f3f3f3;
+    }
+
+    .m-hd-bar .not-prompt
+    {
+        width: 65px;
+
+        color: #333;
+        background: url(img/sprite.png) no-repeat  -68px -1px;
+    }
+
+    .m-hd-bar .hd-bar-wrap .more:hover {
+        text-decoration: underline;
+    }
+
+/*头部*/
+    .hd-wrap
+    {
+        padding: 30px 0 37px;
+    }
+
+    /*网站logo*/
+    .website-logo
+    {
+        width: 234px;
+        height: 22px;
+        padding-right: 31px;
+    }
+
+/*关注*/
+    .m-follow 
+    {
+        line-height: 19px;
+    }
+
+    /* 关注区域 */
+    .m-follow .follow
+    {
+        width: 54px;
+        height: 19px;
+
+        text-indent: 22px;
+
+        color: #fff;
+        border: 1px solid #21a557;
+        border-radius: 1px;
+        background-color: #21a557;
+        background-image: url(img/sprite.png);
+        background-repeat: no-repeat;
+        background-position: -64px -38px;
+    }
+
+    .m-follow .follow:hover
+    {
+        background-color: #2fb556;
+    }
+
+    /* 已关注区域 */
+    .m-follow .u-msg
+    {
+        width: 104px;
+        height: 19px;
+
+        text-indent: 22px;
+
+        border: 1px solid #fafafa;
+        background: #f8f8f8 url(img/sprite.png) no-repeat 6px -88px;
+    }
+
+    .m-follow .u-msg:hover
+    {
+        background-color: #fff;
+    }
+
+    /* 取消关注 */
+    .m-follow .u-msg .unfollow
+    {
+        margin-left: 18px;
+
+        color: #cecece;
+    }
+
+    .m-follow .unfollow:hover
+    {
+        text-decoration: underline;
+
+        color: #21a557;
+    }
+
+    /* 粉丝数 */
+    .m-follow .fans
+    {
+        line-height: 1.75;
+
+        margin-left: 14px;
+
+        color: #666;
+    }
+
+/*导航栏*/
+    .m-global-nav li
+    {
+        font-size: 16px;
+
+        float: left;
+    }
+
+    .m-global-nav li:first-child
+    {
+        margin-left: 0;
+    }
+
+    .m-global-nav li
+    {
+        margin-left: 56px;
+    }
+
+    .m-global-nav li > a
+    {
+        color: #666;
+    }
+
+    .m-global-nav li > a:hover
+    {
+        color: #21a557;
+    }
+
+    /*搜索框*/
+    .m-search
+    {
+        margin-left: 30px;
+    }
+
+    .m-search .search-btn
+    {
+        width: 19px;
+        height: 19px;
+        margin-top: 5px;
+
+        outline: none;
+        background: url(img/sprite.png) no-repeat -10px -36px;
+    }
+
+    .m-search .search-btn:hover
+    {
+        background: url(img/sprite.png) no-repeat -29px -36px;
+    }
+
+/*登录弹窗*/
+    /* 登录框 */
+    .m-login
+    {
+        position: relative;
+        top: 25%;
+
+        width: 387px;
+        height: 288px;
+        margin: 0 auto; /* 居中 */
+        padding: 26px 0 0 40px;
+
+        background-color: #fff;
+    }
+
+    .m-login legend
+    {
+        font-size: 18px;
+    }
+
+    .m-login input
+    {
+        line-height: 43px;
+
+        display: block;
+        overflow: hidden;
+
+        width: 283px;
+        height: 43px;
+        margin-top: 15px;
+        padding-left: 10px;
+
+        border: 1px solid #f0f0f0;
+        background-color: #fafafa;
+        box-shadow: inset 1px 1px 1px  #ebebeb;
+    }
+
+    .m-login .u-submit
+    {
+        font-size: 16px;
+
+        width: 293px;
+        height: 46px;
+        margin-top: 28px;
+
+        color: #fff;
+        background: url(img/sprite.png) repeat-x 0 -108px;
+        box-shadow: 1px 1px 1px #e3ece6;
+    }
+
+    .m-login .u-close
+    {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        display: block;
+
+        width: 10px;
+        height: 10px;
+
+        background: url(img/sprite.png) no-repeat 0 -37px;
+    }
+
+    /* 自己加上的验证提示信息 */
+    .m-login .u-tip
+    {
+        width: 293px;
+        margin-top: 20px;
+
+        color: #eb4545;
+    }

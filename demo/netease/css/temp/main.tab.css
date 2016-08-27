@@ -1,0 +1,239 @@
+/*
+* @Author: Mertens
+* @Date:   2016-03-10 11:23:01
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 11:30:47
+*/
+
+/*
+* 选项卡
+* 所有课程
+* hover 上去卡片详情
+* 翻页器 
+*/
+
+/*选项卡*/
+    .m-tab
+    {
+        width: 960px;
+    }
+
+    /*课程类型*/
+    .tab-nav
+    {
+        margin-bottom: 30px;
+
+        box-shadow: 1px 1px 1px #eaeaea;
+    }
+
+    .tab-nav li
+    {
+        font-size: 20px;
+        line-height: 50px;
+
+        width: 200px;
+
+        color: #666;
+        background-color: #fff;
+    }
+
+    /*当前选项卡*/
+    .tab-nav .z-crt
+    {
+        color: #fff;
+        background-color: #39a030;
+    }
+
+/*所有课程*/
+    .m-commodities
+    {
+        /*BFC 防止高度塌陷*/
+        overflow: hidden; 
+
+        width: 980px;
+        margin-left: -20px;
+    }
+
+    /*每个课程*/
+    .m-commodities li
+    {
+        float: left;
+
+        width: 223px; /*宽度 width + border(1px 1px) = 225px*/
+        margin-bottom: 20px;
+        margin-left: 20px;
+
+        border: 1px solid #fff;
+        background-color: #fff;
+        box-shadow: 1px 0 0 #f2f2f2, -1px 0 0 #f2f2f2, 0 1px 1px #f2f2f2;
+    }
+
+    /* 图片 */
+    .commodity-msg img,
+    .commodity-detail img
+    {
+        line-height: 0;
+
+        width: 224px;
+        height: 124px;
+    }
+
+    /* 课程简述 */
+    .commodity-msg
+    {
+        height: 228px;
+    }
+
+    /* 设置简介的 margin-left */
+    .commodity-msg .u-name,
+    .commodity-msg .u-provider,
+    .commodity-msg .u-count,
+    .commodity-msg .u-price
+    {
+        margin: 0 4px;
+    }
+
+    /* 简介提供者 */
+    .commodity-msg .u-provider
+    {
+        padding-top: 2px;
+
+        color: #999;
+    }
+
+    /* 简介学习人数 */
+    .commodity-msg .u-count
+    {
+        font-size: 11px;
+        line-height: 16px;
+
+        display: inline-block;
+
+        margin-top: 6px;
+        padding-right: 3px;
+
+        text-indent: 18px;
+
+        color: #bbb;
+        border: 1px solid #f4f4f4;
+        border-radius: 1px;
+        background: url(img/sprite.png) no-repeat 3px -64px;
+    }
+
+    /* 简介价格 */
+    .commodity-msg .u-price
+    {
+        font-weight: bold;
+
+        margin-top: 4px;
+
+        color: #ff3f00;
+    }
+    .commodity-msg p.free
+    {
+        font-weight: normal;
+
+        color: #bbb;
+    }
+
+/* hover 上去卡片详情 */
+    .commodity-detail
+    {
+        /* 使用 absolute + margin 设置课程弹窗悬浮在上面 */
+        position: absolute;
+
+        width: 480px;
+        /* height: 240px; */
+        margin-top: -238px;
+        margin-left: -10px;
+
+        background-color: #fff;
+        box-shadow: 0 0 4px #e3e2e2, -1px 0 4px #e3e2e2, 0 1px 3px #e3e2e2;
+    }
+
+    .commodity-detail .u-img
+    {
+        font-size: 0;
+
+        margin: 10px 0 0 10px;
+    }
+    .commodity-detail .detail-wrap
+    {
+        width: 216px;
+        height: 124px;
+        margin: 10px 10px 0 20px;
+
+        color: #666;
+    }
+
+    .commodity-detail .detail-wrap .u-name
+    {
+        font-size: 18px;
+        line-height: 20px;
+
+        color: #333;
+    }
+    .commodity-detail .detail-wrap .u-count
+    {
+        margin-top: 13px;
+
+        text-indent: 18px;
+
+        background: url(img/sprite.png) no-repeat 3px -62px;
+    }
+    .commodity-detail .detail-wrap .u-provider
+    {
+        margin-top: 6px;
+    }
+    .commodity-detail .u-description
+    {
+        font-size: 14px;
+        line-height: 24px;
+
+        float: left;
+
+        width: 440px;
+        margin-top: 20px;
+        padding: 17px 0 19px;
+        padding: 20px 20px;
+
+        color: #666;
+        background-color: #f8f8f8;
+    }
+    
+/* 翻页器 */
+    .m-pagination
+    {
+        display: inline-block;
+
+        margin-bottom: 120px;
+    }
+    .m-pagination li
+    {
+        float: left;
+
+        margin-left: 10px;
+        padding: 0 5px;
+    }
+    .m-pagination a
+    {
+        color: #666;
+    }
+    .m-pagination a:hover
+    {
+        color: #39a030;
+    }
+    .m-pagination .u-page,
+    .m-pagination .z-crt
+    {
+        background-color: #9dd8b1;
+    }
+    .m-pagination .u-page
+    {
+        padding: 0 10px;
+    }
+    .m-pagination .u-page > a,
+    .m-pagination .z-crt > a
+    {
+        color: #fff;
+    }

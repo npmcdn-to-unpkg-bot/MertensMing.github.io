@@ -1,0 +1,136 @@
+/*
+* @Author: Mertens
+* @Date:   2016-03-09 12:13:56
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 11:30:29
+*/
+
+/*
+* 视频
+* 视频弹窗
+* 热门推荐
+*/
+
+/*侧栏*/
+    .side-bar
+    {
+        width: 223px;
+    }
+
+/* 视频 */
+    .m-video,
+    .m-hot
+    {
+        background-color: #fff;
+    }
+    .m-video .u-tt,
+    .m-hot .hot-tt
+    {
+        font-size: 16px;
+        line-height: 22px;
+
+        padding: 17px 20px;
+
+        border-bottom: 1px solid #f4f4f4;
+    }
+    .m-video
+    {
+        box-shadow: 1px 0 0 #f6f6f6, -1px 0 0 #f6f6f6, 0 1px 1px #eaeaea;
+    }
+    .m-video .u-text
+    {
+        font-size: 14px;
+        line-height: 22px;
+
+        padding: 20px 21px 5px 22px;
+    }
+    .m-video .u-play
+    {
+        display: block;
+
+        padding-bottom: 20px;
+        padding-left: 22px;
+    }
+
+/* 视频弹窗 */
+    .video-wrap
+    {
+        text-align: center;
+    }
+    .video-wrap .video-inner
+    {
+        position: relative;
+
+        display: inline-block;
+
+        margin-top: 30px;
+        padding: 30px 30px 0;
+
+        text-align: left;
+
+        background-color: #fff;
+    }
+    .video-wrap .tt
+    {
+        font-size: 18px;
+
+        margin-bottom: -10px;
+    }
+    .video-wrap .close
+    {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+
+        display: block;
+
+        width: 10px;
+        height: 10px;
+
+        background: url(img/sprite.png) no-repeat 0 -37px;
+    }
+
+    .video-wrap .warn {
+        font-size: 16px;
+        line-height:100px;
+        color: #B96F6F;
+    }
+
+/* 热门推荐 */
+    .m-hot
+    {
+        margin-top: 21px;
+
+        border-bottom: 1px solid #fff;
+        box-shadow: 1px 0 0 #f6f6f6, -1px 0 0 #f6f6f6, 0 1px 1px #eaeaea;
+    }
+    .m-hot .hot-items-wrap
+    {
+        height: 770px;
+        overflow: hidden;
+    }
+    .m-hot .hot-item
+    {
+        margin: 20px;
+    }
+    .m-hot img
+    {
+        font-size: 0;
+
+        width: 50px;
+        height: 50px;
+    }
+    .m-hot .msg-wrap
+    {
+        margin-left: 62px;
+        height: 55px;
+    }
+    .m-hot .u-count
+    {
+        margin-top: 5px;
+
+        text-indent: 16px;
+
+        color: #999;
+        background: url(img/sprite.png) no-repeat 3px -62px;
+    }

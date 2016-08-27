@@ -1,0 +1,49 @@
+/*
+* @Author: Administrator
+* @Date:   2016-03-07 13:06:02
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 11:30:45
+*/
+
+/*
+* 适应窄屏的样式
+*/
+
+/*屏幕宽度小于1205 px时的样式*/
+@media screen and (max-width:1205px)
+{
+    /* 包裹区域的宽度 */
+    .hd-bar-wrap,
+    .hd-wrap,
+    .links-wrap,
+    .main-wrap,
+    .footer-wrap
+    {
+        width: 960px;
+    }
+
+    /* 友情链接 */
+    .m-friend-links
+    {
+        margin-left: 0;
+    }
+    .m-friend-links .item
+    {
+        width: 33.333333333%;
+        margin-left: 0;
+    }
+    .m-friend-links .u-text
+    {
+        width: 175px;
+    }
+
+    /* 选项卡下课程 */
+    .m-tab
+    {
+        width: 715px;
+    }
+    .m-commodities
+    {
+        width: 735px;
+    }
+}

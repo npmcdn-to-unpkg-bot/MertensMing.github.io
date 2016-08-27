@@ -1,0 +1,110 @@
+/*
+* @Author: Mertens
+* @Date:   2016-02-29 12:03:21
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-03-27 11:35:35
+*/
+
+/* 公共样式区域 */
+
+/*包裹区域*/
+.hd-bar-wrap,
+.hd-wrap,
+.main-wrap,
+.links-wrap,
+.footer-wrap
+{
+    width: 1206px;
+    margin: 0 auto;
+}
+
+
+/*清除浮动带来的影响*/
+.f-cb::after
+{
+    display: block;
+    visibility: hidden;
+    clear: both;
+    overflow: hidden;
+
+    height: 0;
+
+    content: '.';
+}
+/* 不兼容ie6/7 */
+
+/*浮动*/
+.f-fl
+{
+    float: left;
+}
+.f-fr
+{
+    float: right;
+}
+
+/*inline-block，不兼容 ie7*/
+.f-ib
+{
+    display: inline-block;
+}
+.f-dn
+{
+    display: none;
+}
+.f-db
+{
+    display: block;
+}
+
+/*鼠标形状*/
+.f-csp
+{
+    cursor: pointer;
+}
+
+/*inline 元素对齐*/
+.f-tal
+{
+    text-align: left;
+}
+.f-tac
+{
+    text-align: center;
+}
+.f-tar
+{
+    text-align: right;
+}
+
+/*隐藏文字*/
+.f-ti
+{
+    overflow: hidden;
+
+    text-indent: -30000px;
+}
+
+/* 单行文字超出显示省略号 */
+.f-toe
+{
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 遮罩 */
+.mask
+{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    /*支持rgba的浏览器*/
+
+    background: rgba(0,0,0,.8);
+}
