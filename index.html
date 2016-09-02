@@ -269,9 +269,7 @@
       
         
           <h2 id="翻转字符串"><a href="#翻转字符串" class="headerlink" title="翻转字符串"></a>翻转字符串</h2><p>先把字符串转化成数组，再借助数组的 reverse 方法翻转数组顺序，最后把数组转化成字符串。</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/bajefu/1/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.14"></script></p>
 <h2 id="计算一个整数的阶乘"><a href="#计算一个整数的阶乘" class="headerlink" title="计算一个整数的阶乘"></a>计算一个整数的阶乘</h2><p>如果用字母 n 来代表一个整数，阶乘代表着所有小于或等于 n 的整数的乘积。</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/qapivu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.39.14"></script></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/29/basic-algorithm-scripting/#more" rel="contents">
               阅读全文 &raquo;
@@ -367,10 +365,15 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>直接开始吧！</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>环境配置这块比较麻烦，而且容易出错，打击信心，建议直接使用我的这个脚手架。如果不理解的话看下我之前写的这篇文章，<a href="http://mertensming.github.io/2016/08/20/webpack-config-react/">Webpack 配置</a>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone git@github.com:MertensMing/react-boilerplate.git</div><div class="line">$ cd react-boilerplate</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
-<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h2><p>环境配置好之后，就可以愉快地来写代码了。我们先来写一个简单的 <code>Hello World</code> 来验证一下之前配置的环境有没有问题。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>文章使用的代码放在我的 <code>github</code> 上面，这是<a href="https://github.com/MertensMing/react-TodoList"><strong>代码的链接</strong></a>，可以直接 <code>fork</code> 一份开始练习。</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>环境配置这块比较麻烦，而且容易出错，打击信心，建议直接使用我的这个脚手架。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用脚手架</span></div><div class="line">$ git clone git@github.com:MertensMing/react-boilerplate.git</div><div class="line">$ cd react-boilerplate</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<h3 id="开发脚手架"><a href="#开发脚手架" class="headerlink" title="开发脚手架"></a>开发脚手架</h3><p>这个脚手架对于初学者来说还是比较复杂的，但是也不用过于紧张，这里我会详细讲解。但是，这需要你对 React，Redux，React-Router，ES6 有一定的认识，如果看得云里雾里一点都看不懂得的话，建议先去补补这些知识。</p>
+<h4 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a><code>webpack.config.js</code></h4><p>这里就不赘述了，可以看看 <a href="http://mertensming.github.io/2016/08/20/webpack-config-react/">Webpack 配置</a> 这篇博客，需要对 webpack 有一定的了解。还有 <code>webpack.config.js</code> 文件里面的注释也是比较详细的了。</p>
+<p>这里需要注意的一点是，这个环境的配置都分为了两个环境，<strong><code>开发环境（dev）</code></strong> 和 <strong><code>生产环境（prod）</code></strong>，所以你会看到类似于下面的文件名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Root.jsx // 判断当前处于哪个环境，决定提取哪个文件</div><div class="line">Root.dev.jsx // 开发环境</div><div class="line">Root.prod.jsx // 生产环境</div></pre></td></tr></table></figure>
+<p>生产环境 和 开发环境的配置具体有哪些不一样下我也会提到。</p>
+<h4 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a><code>index.js</code></h4><p>这个文件是整个项目的入口，个人觉得这里需要注意的地方就是<code>热加载</code>（<code>react-hot-loader</code>），因为需要 <code>hot-load</code>，所以被 <code>&lt;Provider&gt;&lt;/Provider&gt;</code> 包裹的部分必须作为一个组件（<code>&lt;Root&gt;</code>）import 进来。<code>store</code> 和 <code>history</code> 也需要在这里作为属性传递给 <code>&lt;Root&gt;</code>。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/build-todolist-with-react/#more" rel="contents">
               阅读全文 &raquo;
