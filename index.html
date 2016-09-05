@@ -245,134 +245,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/05/untitled/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T20:36:12+08:00" content="2016-09-05">
-              2016-09-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            function getCost(totalLabels, total, arr) {
-  arr = arr.sort(function(a, b) {
-    return a - b;
-  });
-  var min, max, i;
-  min = 0;
-  max = 0;
-  for (i = 0; i < total; i++) {
-    min += arr[i];
-  }
-  for (i = 0; i < total; i++) {
-    max += arr[totalLabels - (i + 1)];
-  }
-  return [min, max];
-}
-// 5, 3, [4, 2, 1, 10, 5]
-// [4, 2, 1, 10, 5]
-
-function mergeArr(arr0, arr1, arr2) {
-  var allArr = arr0.concat(arr1, arr2);
-  var newArr = [];
-  allArr.forEach(function(number) {
-    if (_inArray(number, newArr)) {
-      newArr.push(number);
-    }
-  });
-  function _inArray(number, arr) {
-    return arr.every(function (item) {
-      return number !== item;
-    })
-  }
-  return newArr.sort(function(a,b) {
-    return a - b;
-  });
-}
-  
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/05/node-package-manager/" itemprop="url">
                   Node.js 学习之旅 —— NPM
                 </a>
@@ -1109,7 +981,7 @@ function mergeArr(arr0, arr1, arr2) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
