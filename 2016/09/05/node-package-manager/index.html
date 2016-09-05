@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mertens blog FE" />
+  <meta name="keywords" content="Node.js," />
 
 
 
@@ -84,12 +84,34 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mertens Blog">
-<meta property="og:url" content="mertensming.github.io/index.html">
+<meta name="description" content="起步NPM 介绍npm 有两层含义：
+
+Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
+另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。
+
+更新 NPMnpm 是不需要单独安装的，因为在安装 Node 的时候，会连带一起安装 npm，但是，Node 附带的 npm 可能不是最新的版本，最好使用以下命令跟新到最新版本。
+$ su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 学习之旅 —— NPM">
+<meta property="og:url" content="mertensming.github.io/2016/09/05/node-package-manager/index.html">
 <meta property="og:site_name" content="Mertens Blog">
+<meta property="og:description" content="起步NPM 介绍npm 有两层含义：
+
+Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
+另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。
+
+更新 NPMnpm 是不需要单独安装的，因为在安装 Node 的时候，会连带一起安装 npm，但是，Node 附带的 npm 可能不是最新的版本，最好使用以下命令跟新到最新版本。
+$ su">
+<meta property="og:updated_time" content="2016-09-05T13:26:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mertens Blog">
+<meta name="twitter:title" content="Node.js 学习之旅 —— NPM">
+<meta name="twitter:description" content="起步NPM 介绍npm 有两层含义：
+
+Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
+另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。
+
+更新 NPMnpm 是不需要单独安装的，因为在安装 Node 的时候，会连带一起安装 npm，但是，Node 附带的 npm 可能不是最新的版本，最好使用以下命令跟新到最新版本。
+$ su">
 
 
 
@@ -110,9 +132,9 @@
 
 
 
-  <link rel="canonical" href="mertensming.github.io/"/>
+  <link rel="canonical" href="mertensming.github.io/2016/09/05/node-package-manager/"/>
 
-  <title> Mertens Blog </title>
+  <title> Node.js 学习之旅 —— NPM | Mertens Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,9 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -222,9 +242,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -244,138 +264,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/09/05/untitled/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T20:36:12+08:00" content="2016-09-05">
-              2016-09-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            function getCost(totalLabels, total, arr) {
-  arr = arr.sort(function(a, b) {
-    return a - b;
-  });
-  var min, max, i;
-  min = 0;
-  max = 0;
-  for (i = 0; i < total; i++) {
-    min += arr[i];
-  }
-  for (i = 0; i < total; i++) {
-    max += arr[totalLabels - (i + 1)];
-  }
-  return [min, max];
-}
-// 5, 3, [4, 2, 1, 10, 5]
-// [4, 2, 1, 10, 5]
-
-function mergeArr(arr0, arr1, arr2) {
-  var allArr = arr0.concat(arr1, arr2);
-  var newArr = [];
-  allArr.forEach(function(number) {
-    if (_inArray(number, newArr)) {
-      newArr.push(number);
-    }
-  });
-  function _inArray(number, arr) {
-    return arr.every(function (item) {
-      return number !== item;
-    })
-  }
-  return newArr.sort(function(a,b) {
-    return a - b;
-  });
-}
-  
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/05/node-package-manager/" itemprop="url">
-                  Node.js 学习之旅 —— NPM
-                </a>
+                Node.js 学习之旅 —— NPM
               
             
           </h1>
@@ -434,9 +323,7 @@ function mergeArr(arr0, arr1, arr2) {
       
 
       
-        
-          
-            <h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><h3 id="NPM-介绍"><a href="#NPM-介绍" class="headerlink" title="NPM 介绍"></a>NPM 介绍</h3><p><code>npm</code> 有两层含义：</p>
+        <h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><h3 id="NPM-介绍"><a href="#NPM-介绍" class="headerlink" title="NPM 介绍"></a>NPM 介绍</h3><p><code>npm</code> 有两层含义：</p>
 <ol>
 <li>Node 的开放式 <code>模块 登记和管理</code> 系统，网址是 <a href="https://www.npmjs.com/" target="_blank" rel="external">npmjs.org</a></li>
 <li>另一层含义是 Node 默认的<code>模块管理器</code>，是一个命令行下的软件，用来安装和管理 Node 模块。</li>
@@ -541,633 +428,63 @@ function mergeArr(arr0, arr1, arr2) {
 <figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line"><span class="comment">// .npmignore</span></div><div class="line"><span class="keyword">source</span></div><div class="line"></div><div class="line"><span class="comment">// .gitignore</span></div><div class="line">node_modules</div><div class="line">distribution</div></pre></td></tr></table></figure>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://javascript.ruanyifeng.com/nodejs/npm.html#" target="_blank" rel="external">npm模块管理器</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/29/basic-algorithm-scripting/" itemprop="url">
-                  JS 算法实践 —— 基础篇
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T08:20:06+08:00" content="2016-08-29">
-              2016-08-29
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/Node-js/" rel="tag">#Node.js</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="翻转字符串"><a href="#翻转字符串" class="headerlink" title="翻转字符串"></a>翻转字符串</h2><p>先把字符串转化成数组，再借助数组的 reverse 方法翻转数组顺序，最后把数组转化成字符串。</p>
-<h2 id="计算一个整数的阶乘"><a href="#计算一个整数的阶乘" class="headerlink" title="计算一个整数的阶乘"></a>计算一个整数的阶乘</h2><p>如果用字母 n 来代表一个整数，阶乘代表着所有小于或等于 n 的整数的乘积。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/29/basic-algorithm-scripting/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/29/basic-algorithm-scripting/" rel="next" title="JS 算法实践 —— 基础篇">
+                <i class="fa fa-chevron-left"></i> JS 算法实践 —— 基础篇
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/09/05/untitled/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/08/28/computer-network-http/" itemprop="url">
-                  网络基础 —— HTTP
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T19:42:31+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="网络基础-TCP-IP"><a href="#网络基础-TCP-IP" class="headerlink" title="网络基础 TCP/IP"></a>网络基础 TCP/IP</h2><p><code>TCP/IP</code> 是在 <code>IP协议</code> 的通信过程中使用到的<code>协议族</code>的统称。</p>
-<h3 id="什么是协议（protocol）？"><a href="#什么是协议（protocol）？" class="headerlink" title="什么是协议（protocol）？"></a>什么是协议（protocol）？</h3><p>计算机与网络设备要相互通信,需要考虑以下的问题。比如：</p>
-<ul>
-<li>如何探测到通信目标？</li>
-<li>由哪一边先发起通信？</li>
-<li>使用哪种语言进行通信？</li>
-<li>怎样结束通信？</li>
-<li>等等…</li>
-</ul>
-<p><strong>总而言之，不同的硬件、操作系统之间的通信, 所有的这一切都需要一种规则，这种规则就被称为 <code>协议(protocol)</code></strong>。</p>
-<h3 id="协议中存在哪些内容-？"><a href="#协议中存在哪些内容-？" class="headerlink" title="协议中存在哪些内容 ？"></a>协议中存在哪些内容 ？</h3><ul>
-<li>电缆的规格</li>
-<li>IP 地址的选定方法</li>
-<li>寻找异地用户的方法</li>
-<li>双方建立通信的顺序</li>
-<li>Web 页面显示需要处理的步骤</li>
-<li>等等…</li>
-</ul>
-<h3 id="TCP-IP（协议全家桶）"><a href="#TCP-IP（协议全家桶）" class="headerlink" title="TCP/IP（协议全家桶）"></a>TCP/IP（协议全家桶）</h3><p>对于 <code>TCP/IP</code> 的说法不一，主要有以下几种说法：</p>
-<ul>
-<li>与互联网相关联的协议集合起来总称为 <code>TCP/IP</code></li>
-<li>也有说法认为,<code>TCP/IP</code> 是指 <code>TCP</code> 和 <code>IP</code> 这两种协议</li>
-<li>还有一种说法认为,<code>TCP/ IP</code> 是在 <code>IP</code> 协议的通信过程中,使用到的协议族的统称</li>
-</ul>
-<p>In a word，<code>TCP/IP</code> 其实就是协议全家桶的意思。</p>
-<h3 id="TCP-IP-的分层管理"><a href="#TCP-IP-的分层管理" class="headerlink" title="TCP/IP 的分层管理"></a>TCP/IP 的分层管理</h3><p>分层，这是 <code>TCP/IP</code> 协议族里重要的一点。<br><code>TCP/IP</code> 协议族按层次分别分为以下 4 层:</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-</ul>
-<h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>应用层决定了向用户提供 <code>应用服务</code> 时 <code>通信的活动</code>。</p>
-<ul>
-<li><code>HTTP</code> 协议</li>
-<li><code>FTP</code> (File Transfer Protocol,文件传输协议)</li>
-<li><code>DNS</code> (Domain Name System,域名系统)</li>
-</ul>
-<h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>传输层提供处于网络连接中的两台计算机之间的数据传输。</p>
-<ul>
-<li><code>TCP</code> (Transmission Control Protocol,传输控制协议)</li>
-<li><code>UDP</code> (User Data Protocol,用户数据报协议)</li>
-</ul>
-<h4 id="网络层-又名网络互连层"><a href="#网络层-又名网络互连层" class="headerlink" title="网络层(又名网络互连层)"></a>网络层(又名网络互连层)</h4><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。</p>
-<p>该层规定了通过怎样的路径 (所谓的传输路线)到达对方计算机,并把数据包传送给对方。</p>
-<p>与对方计算机之间通过多台计算机或网络设备进行传输时,网络层所起的作用就是在众多的选项内选择一条传输路线。</p>
-<h4 id="链路层-又名数据链路层-网络接口层"><a href="#链路层-又名数据链路层-网络接口层" class="headerlink" title="链路层(又名数据链路层,网络接口层)"></a>链路层(又名数据链路层,网络接口层)</h4><p>用来处理连接网络的硬件部分。</p>
-<p>包括控制操作系统、硬件的设备驱动、NIC(Network Interface Card,网络 适配器,即网卡),及光纤等物理可见部分(还包括连接器等一切传输媒介)。</p>
-<h3 id="TCP-IP-通信传输流"><a href="#TCP-IP-通信传输流" class="headerlink" title="TCP/IP 通信传输流"></a>TCP/IP 通信传输流</h3><p><img src="1.jpeg"></p>
-<p>利用 <code>TCP/IP</code> 协议族进行网络通信时,会通过分层顺序与对方进行通信。<br>发送端从应用层往下走,接收端则往 应用层往上走。</p>
-<h4 id="当客户端发送了一个-HTTP-请求"><a href="#当客户端发送了一个-HTTP-请求" class="headerlink" title="当客户端发送了一个 HTTP 请求"></a>当客户端发送了一个 HTTP 请求</h4><p>我们用 HTTP 举例来说明。</p>
-<ol>
-<li>首先作为发送端的客户端在<code>应用层</code>(<code>HTTP</code> 协议)发出一个想看某个 <code>Web</code> 页面的 <code>HTTP</code> 请求。</li>
-<li>接着,为了传输方便,在传输层(<code>TCP</code> 协议)把从应用层处收到的数据(<code>HTTP</code> 请求报文)进行分割,并在 <code>各个报文</code>上打上<code>标记序号及端口号</code>后转发给网络层。</li>
-<li>在网络层(<code>IP</code> 协议),<code>增加</code>作为通信目的地的 <code>MAC</code> 地址后转发给链路层。这样一来,发往网络的通信请求就准备齐全了。</li>
-<li>接收端的服务器在链路层接收到数据,按序往上层发送,一直到应用层。当传输到应用层,才能算真正接收 到由客户端发送过来的 <code>HTTP</code> 请求。</li>
-</ol>
-<p><img src="2.png"></p>
-<h2 id="HTTP-的三个好基友：IP、TCP-和-DNS"><a href="#HTTP-的三个好基友：IP、TCP-和-DNS" class="headerlink" title="HTTP 的三个好基友：IP、TCP 和 DNS"></a>HTTP 的三个好基友：IP、TCP 和 DNS</h2><h3 id="负责传输的-IP-协议"><a href="#负责传输的-IP-协议" class="headerlink" title="负责传输的 IP 协议"></a>负责传输的 IP 协议</h3><p><code>IP</code>(Internet Protocol)网际协议位于网络层。几乎所有使用网络的系统都会用到 <code>IP</code> 协议。<br><code>TCP/IP</code> 协议族中的 <code>IP</code> 指的就是网际协议。<code>“IP”</code>和<code>“IP地址”</code>是不一样的,<code>“IP”</code>其实是一种协议的名称。</p>
-<p>IP 协议的作用是把各种数据包传送给对方。</p>
-<p>而要保证确实传送到对方那里,则需要满足各类条件。<br>其中两个 重要的条件是 IP 地址和 MAC 地址(Media Access Control Address)。</p>
-<p>IP 地址指明了节点被分配到的地址,MAC 地址是指网卡所属的固定地址。<br>IP 地址可以和 MAC 地址进行配对。IP 地址可变换,但 MAC 地址基本上不会更改。</p>
-<h3 id="确保可靠性的-TCP-协议"><a href="#确保可靠性的-TCP-协议" class="headerlink" title="确保可靠性的 TCP 协议"></a>确保可靠性的 TCP 协议</h3><p>TCP 位于传输层,提供可靠的字节流服务。</p>
-<ol>
-<li>所谓的字节流服务(Byte Stream Service)是指,为了方便传输,将大块数据分割成以报文段(segment) 为单位的数据包进行管理。</li>
-<li>而可靠的传输服务是指,能够把数据准确可靠地传给对方。</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/learn-redux/" itemprop="url">
-                  Redux 学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T23:20:22+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="为什么需要-Redux？"><a href="#为什么需要-Redux？" class="headerlink" title="为什么需要 Redux？"></a>为什么需要 Redux？</h2><p>去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。</p>
-<blockquote>
-<p>如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。<br>如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。</p>
-</blockquote>
-<p>—— <a href="http://cn.redux.js.org/index.html">《Redux 文档》</a></p>
-<p>上面提到的复杂性很大程度来自于： <strong><code>我们总是将两个难以厘清的概念混淆在一起：变化和异步。</code></strong></p>
-<p>这句话深有感触，同意 +1！！！！有上面那么多东西，写代码的时候已经足够让人炸裂了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/learn-redux/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/20/react-redux-router/" itemprop="url">
-                  使用 React、React-router 和 Redux 开发前端应用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T15:00:17+08:00" content="2016-08-20">
-              2016-08-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇笔记是接着上一篇的，使用的是<a href="https://github.com/jpsierens/webpack-react-redux-react-router">同一个示例</a>，文章主要介绍一个 web 应用是如何跟 redux 和 react-router 协同工作的。<br><a href="http://jpsierens.com/simple-react-redux-application/">原文 part1</a><br><a href="http://jpsierens.com/simple-react-redux-application-2/">原文 part2</a></p>
-<h2 id="ES6-amp-Babel"><a href="#ES6-amp-Babel" class="headerlink" title="ES6 &amp; Babel"></a>ES6 &amp; Babel</h2><p>在理解这个例子的时候，你需要去了解一下 ES6 的新特性，不然的话可能理解其来会比较困难。推荐一个办法，ES6 的大概这个肯定是要去过一遍的，这个没跑，过一遍之后估计是一大半都忘记了，这个没关系，打开 <code>babel</code> 的官网，那里有一个 <a href="http://babeljs.cn/repl/"><strong>在线实验</strong></a> 的功能，把看不懂的代码粘贴过去，大部分其实都可以理解了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/20/react-redux-router/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/20/webpack-config-react/" itemprop="url">
-                  Webpack 配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T07:38:39+08:00" content="2016-08-20">
-              2016-08-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章是我看教程整理的一些笔记，原文在<a href="http://jpsierens.com/tutorial-react-redux-webpack/">这里</a>，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，<a href="https://github.com/jpsierens/webpack-react-redux-react-router">这里</a>是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读<a href="http://jpsierens.com/tutorial-react-redux-webpack/">原文</a>。</p>
-<h2 id="React-Redux-React-Router"><a href="#React-Redux-React-Router" class="headerlink" title="React, Redux, React-Router"></a>React, Redux, React-Router</h2><p>假定你已经知道这三个东西是什么了（如果不知道赶紧去查文档）。</p>
-<ul>
-<li><a href="https://www.gitbook.com/book/chenyitian/react-docs/details">React 中文文档</a></li>
-<li><a href="http://cn.redux.js.org/index.html">Redux 中文文档</a></li>
-<li><a href="https://react-guide.github.io/react-router-cn/">React Router 中文文档</a></li>
-</ul>
-<h2 id="Webpack-Config"><a href="#Webpack-Config" class="headerlink" title="Webpack Config"></a>Webpack Config</h2><p>下面，我们就来开始我们应用最核心的一部分：webpack 的配置文件。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/20/webpack-config-react/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -1175,6 +492,10 @@ function mergeArr(arr0, arr1, arr2) {
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1194,8 +515,17 @@ function mergeArr(arr0, arr1, arr2) {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -1245,6 +575,17 @@ function mergeArr(arr0, arr1, arr2) {
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起步"><span class="nav-number">1.</span> <span class="nav-text">起步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NPM-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">NPM 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-NPM"><span class="nav-number">1.2.</span> <span class="nav-text">更新 NPM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的-package-json-文件"><span class="nav-number">2.</span> <span class="nav-text">新的 package.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置环境变量"><span class="nav-number">3.</span> <span class="nav-text">设置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看模块的具体信息"><span class="nav-number">4.</span> <span class="nav-text">查看模块的具体信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列出安装的所有模块"><span class="nav-number">5.</span> <span class="nav-text">列出安装的所有模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装模块"><span class="nav-number">6.</span> <span class="nav-text">安装模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">6.1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局安装"><span class="nav-number">6.1.1.</span> <span class="nav-text">全局安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地安装"><span class="nav-number">6.1.2.</span> <span class="nav-text">本地安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接输入Github代码库地址"><span class="nav-number">6.1.3.</span> <span class="nav-text">直接输入Github代码库地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强制重新安装"><span class="nav-number">6.1.4.</span> <span class="nav-text">强制重新安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新安装所有模块"><span class="nav-number">6.1.5.</span> <span class="nav-text">重新安装所有模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定参数"><span class="nav-number">6.2.</span> <span class="nav-text">指定参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装不同的版本"><span class="nav-number">6.2.1.</span> <span class="nav-text">安装不同的版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定依赖关系"><span class="nav-number">6.2.2.</span> <span class="nav-text">指定依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Beta-版本"><span class="nav-number">6.2.3.</span> <span class="nav-text">Beta 版本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新与卸载"><span class="nav-number">7.</span> <span class="nav-text">更新与卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-update"><span class="nav-number">7.1.</span> <span class="nav-text">npm update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-uninstall"><span class="nav-number">7.2.</span> <span class="nav-text">npm uninstall</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行脚本"><span class="nav-number">8.</span> <span class="nav-text">执行脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法-1"><span class="nav-number">8.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号链接"><span class="nav-number">8.2.</span> <span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不加参数"><span class="nav-number">8.3.</span> <span class="nav-text">不加参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流操作"><span class="nav-number">8.4.</span> <span class="nav-text">流操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">8.5.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册用户"><span class="nav-number">9.</span> <span class="nav-text">注册用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布模块"><span class="nav-number">10.</span> <span class="nav-text">发布模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">11.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1341,6 +682,10 @@ function mergeArr(arr0, arr1, arr2) {
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
