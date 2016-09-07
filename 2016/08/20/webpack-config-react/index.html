@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion">
+<html class="theme-next pisces">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -26,10 +24,6 @@
 
 
 
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -84,29 +78,26 @@
 
 
 
-<meta name="description" content="前言这篇文章是我看教程整理的一些笔记，原文在这里，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，这里是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读原文。
-React, R">
+<meta name="description" content="前言这篇文章是我看教程整理的一些笔记，原文在这里，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，这里是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读原文。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack 配置">
 <meta property="og:url" content="mertensming.github.io/2016/08/20/webpack-config-react/index.html">
 <meta property="og:site_name" content="Mertens Blog">
-<meta property="og:description" content="前言这篇文章是我看教程整理的一些笔记，原文在这里，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，这里是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读原文。
-React, R">
-<meta property="og:updated_time" content="2016-08-21T07:34:52.000Z">
+<meta property="og:description" content="前言这篇文章是我看教程整理的一些笔记，原文在这里，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，这里是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读原文。">
+<meta property="og:updated_time" content="2016-09-07T01:55:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack 配置">
-<meta name="twitter:description" content="前言这篇文章是我看教程整理的一些笔记，原文在这里，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，这里是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读原文。
-React, R">
+<meta name="twitter:description" content="前言这篇文章是我看教程整理的一些笔记，原文在这里，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，这里是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读原文。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: 0,
       author: '博主'
@@ -309,6 +300,7 @@ React, R">
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章是我看教程整理的一些笔记，原文在<a href="http://jpsierens.com/tutorial-react-redux-webpack/" target="_blank" rel="external">这里</a>，这里将向你展示，如果需要使用 React、React-router 和 Redux 开发前端应用，webpack 应该如何配置，<a href="https://github.com/jpsierens/webpack-react-redux-react-router" target="_blank" rel="external">这里</a>是整片文章所使用的一个例子。看完这个你应该明白 webpack 是怎么配置的，配置文件里的每个属性都是做什么用的，以及多个配置文件怎么用，这里我自己的理解可能不太好，如果这个看不明白的话敬请阅读<a href="http://jpsierens.com/tutorial-react-redux-webpack/" target="_blank" rel="external">原文</a>。</p>
+<a id="more"></a>
 <h2 id="React-Redux-React-Router"><a href="#React-Redux-React-Router" class="headerlink" title="React, Redux, React-Router"></a>React, Redux, React-Router</h2><p>假定你已经知道这三个东西是什么了（如果不知道赶紧去查文档）。</p>
 <ul>
 <li><a href="https://www.gitbook.com/book/chenyitian/react-docs/details" target="_blank" rel="external">React 中文文档</a></li>
@@ -316,7 +308,6 @@ React, R">
 <li><a href="https://react-guide.github.io/react-router-cn/" target="_blank" rel="external">React Router 中文文档</a></li>
 </ul>
 <h2 id="Webpack-Config"><a href="#Webpack-Config" class="headerlink" title="Webpack Config"></a>Webpack Config</h2><p>下面，我们就来开始我们应用最核心的一部分：webpack 的配置文件。</p>
-<a id="more"></a>
 <p>有两个配置文件，一个配置文件用于开发环境，另外一个用于生产环境，它们唯一的区别就是用于生产环境的那份配置表会压缩你的文件。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    devtool: <span class="string">'eval-source-map'</span>,</div><div class="line">    entry: [</div><div class="line">        <span class="string">'webpack-dev-server/client?http://localhost:3000'</span>,</div><div class="line">        <span class="string">'webpack/hot/only-dev-server'</span>,</div><div class="line">        <span class="string">'react-hot-loader/patch'</span>,</div><div class="line">        path.join(__dirname, <span class="string">'app/index.js'</span>)</div><div class="line">    ],</div><div class="line">    output: &#123;</div><div class="line">        path: path.join(__dirname, <span class="string">'/dist/'</span>),</div><div class="line">        filename: <span class="string">'[name].js'</span>,</div><div class="line">        publicPath: <span class="string">'/'</span></div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">          template: <span class="string">'app/index.tpl.html'</span>,</div><div class="line">          inject: <span class="string">'body'</span>,</div><div class="line">          filename: <span class="string">'index.html'</span></div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> webpack.optimize.OccurenceOrderPlugin(),</div><div class="line">        <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">        <span class="keyword">new</span> webpack.NoErrorsPlugin(),</div><div class="line">        <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">          <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'development'</span>)</div><div class="line">        &#125;)</div><div class="line">    ],</div><div class="line">    <span class="built_in">module</span>: &#123;</div><div class="line">        loaders: [</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.js?$/</span>,</div><div class="line">                exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">                loader: <span class="string">'babel'</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.json?$/</span>,</div><div class="line">                loader: <span class="string">'json'</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.scss$/</span>,</div><div class="line">                loader: <span class="string">'style!css!sass?modules&amp;localIdentName=[name]---[local]---[hash:base64:5]'</span></div><div class="line">            &#125;,</div><div class="line">            &#123; test: <span class="regexp">/\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>, loader: <span class="string">"url-loader?limit=10000&amp;minetype=application/font-woff"</span> &#125;,</div><div class="line">            &#123; test: <span class="regexp">/\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>, loader: <span class="string">"file-loader"</span> &#125;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>o(╯□╰)o，配置好多，不过莫慌，我们来一点点分析这个文件。</p>
@@ -453,7 +444,7 @@ React, R">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -532,7 +523,7 @@ React, R">
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -563,8 +554,6 @@ React, R">
 
 
 
-  
-
 
 
   
@@ -582,9 +571,6 @@ React, R">
   
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
 
   
 
@@ -597,6 +583,13 @@ React, R">
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>

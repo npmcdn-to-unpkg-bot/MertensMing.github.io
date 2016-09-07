@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion">
+<html class="theme-next pisces">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -26,10 +24,6 @@
 
 
 
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -84,32 +78,26 @@
 
 
 
-<meta name="description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。
-
-如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，">
+<meta name="description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redux 学习笔记">
 <meta property="og:url" content="mertensming.github.io/2016/08/22/learn-redux/index.html">
 <meta property="og:site_name" content="Mertens Blog">
-<meta property="og:description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。
-
-如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，">
-<meta property="og:updated_time" content="2016-09-03T14:10:14.000Z">
+<meta property="og:description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。">
+<meta property="og:updated_time" content="2016-09-07T01:54:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux 学习笔记">
-<meta name="twitter:description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。
-
-如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，">
+<meta name="twitter:description" content="为什么需要 Redux？去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: 0,
       author: '博主'
@@ -293,13 +281,13 @@
 
       
         <h2 id="为什么需要-Redux？"><a href="#为什么需要-Redux？" class="headerlink" title="为什么需要 Redux？"></a>为什么需要 Redux？</h2><p>去实习做了项目，感触还挺深刻的，项目中需要处理很多事件，触发事件的变化就会使应用的状态（state）变化，而且有时候使得 state 变化的原因不仅仅是触发事件，也有可能是服务器响应、缓存数据、激活的路由 …等各种各样的原因。</p>
+<a id="more"></a>
 <blockquote>
 <p>如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰。<br>如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等等。</p>
 </blockquote>
 <p>—— <a href="http://cn.redux.js.org/index.html" target="_blank" rel="external">《Redux 文档》</a></p>
 <p>上面提到的复杂性很大程度来自于： <strong><code>我们总是将两个难以厘清的概念混淆在一起：变化和异步。</code></strong></p>
 <p>这句话深有感触，同意 +1！！！！有上面那么多东西，写代码的时候已经足够让人炸裂了。</p>
-<a id="more"></a>
 <h2 id="Redux-的三大原则"><a href="#Redux-的三大原则" class="headerlink" title="Redux 的三大原则"></a>Redux 的三大原则</h2><h3 id="单一数据源"><a href="#单一数据源" class="headerlink" title="单一数据源"></a>单一数据源</h3><p>整个应用的 state 被存放在一个 对象(object) 里面，而这个对象被只存在于唯一的一个 store 中。就是说整个应用的 state 都需要通过这个 store 来管理。</p>
 <h3 id="只读的-state"><a href="#只读的-state" class="headerlink" title="只读的 state"></a>只读的 state</h3><p>惟一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。需要注意的就是，你不能去修改 state，要想改变 state，只能返回一个新的 state，而不能在原来的基础上修改。</p>
 <h3 id="使用纯函数（Reducer）改变-state"><a href="#使用纯函数（Reducer）改变-state" class="headerlink" title="使用纯函数（Reducer）改变 state"></a>使用纯函数（Reducer）改变 state</h3><p>为了描述 action 如何改变 state 的 ，需要编写 reducers。Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。<br>ps：不要把 reducer 想象得太复杂，其实就是一个函数，接收 state 和 action，根据 action 返回新的 state 或者旧的 state。</p>
@@ -553,7 +541,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -632,7 +620,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -663,8 +651,6 @@
 
 
 
-  
-
 
 
   
@@ -682,9 +668,6 @@
   
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
 
   
 
@@ -697,6 +680,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>

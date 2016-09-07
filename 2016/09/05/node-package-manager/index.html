@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion">
+<html class="theme-next pisces">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -26,10 +24,6 @@
 
 
 
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -84,35 +78,53 @@
 
 
 
-<meta name="description" content="起步NPM 介绍npm 有两层含义：
+<meta name="description" content="npm 有两层含义：
 
 Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
-另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。">
+另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。
+
+npm 常见的使用场景有以下几种：
+
+允许用户从 npm 服务器下载别人编写的第三方包到本地使用。
+允许用户从 npm 服务器下载并安装别人编写的命令行程序到本地使用。
+允许用户将自己编写的包或命令行程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js 学习之旅 —— NPM">
+<meta property="og:title" content="Node.js 学习之路 —— NPM">
 <meta property="og:url" content="mertensming.github.io/2016/09/05/node-package-manager/index.html">
 <meta property="og:site_name" content="Mertens Blog">
-<meta property="og:description" content="起步NPM 介绍npm 有两层含义：
+<meta property="og:description" content="npm 有两层含义：
 
 Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
-另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。">
-<meta property="og:updated_time" content="2016-09-05T13:30:58.000Z">
+另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。
+
+npm 常见的使用场景有以下几种：
+
+允许用户从 npm 服务器下载别人编写的第三方包到本地使用。
+允许用户从 npm 服务器下载并安装别人编写的命令行程序到本地使用。
+允许用户将自己编写的包或命令行程序">
+<meta property="og:updated_time" content="2016-09-07T02:09:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js 学习之旅 —— NPM">
-<meta name="twitter:description" content="起步NPM 介绍npm 有两层含义：
+<meta name="twitter:title" content="Node.js 学习之路 —— NPM">
+<meta name="twitter:description" content="npm 有两层含义：
 
 Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
-另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。">
+另一层含义是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理 Node 模块。
+
+npm 常见的使用场景有以下几种：
+
+允许用户从 npm 服务器下载别人编写的第三方包到本地使用。
+允许用户从 npm 服务器下载并安装别人编写的命令行程序到本地使用。
+允许用户将自己编写的包或命令行程序">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: 0,
       author: '博主'
@@ -125,7 +137,7 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
 
   <link rel="canonical" href="mertensming.github.io/2016/09/05/node-package-manager/"/>
 
-  <title> Node.js 学习之旅 —— NPM | Mertens Blog </title>
+  <title> Node.js 学习之路 —— NPM | Mertens Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +267,7 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
             
             
               
-                Node.js 学习之旅 —— NPM
+                Node.js 学习之路 —— NPM
               
             
           </h1>
@@ -314,13 +326,19 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
       
 
       
-        <h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><h3 id="NPM-介绍"><a href="#NPM-介绍" class="headerlink" title="NPM 介绍"></a>NPM 介绍</h3><p><code>npm</code> 有两层含义：</p>
+        <p><code>npm</code> 有两层含义：</p>
 <ol>
 <li>Node 的开放式 <code>模块 登记和管理</code> 系统，网址是 <a href="https://www.npmjs.com/" target="_blank" rel="external">npmjs.org</a></li>
 <li>另一层含义是 Node 默认的<code>模块管理器</code>，是一个命令行下的软件，用来安装和管理 Node 模块。</li>
 </ol>
+<p><code>npm</code> 常见的使用场景有以下几种：</p>
+<ul>
+<li>允许用户从 <code>npm</code> 服务器下载别人编写的第三方包到本地使用。</li>
+<li>允许用户从 <code>npm</code> 服务器下载并安装别人编写的命令行程序到本地使用。</li>
+<li>允许用户将自己编写的包或命令行程序上传到 <code>npm</code> 服务器供别人使用。</li>
+</ul>
 <a id="more"></a>
-<h3 id="更新-NPM"><a href="#更新-NPM" class="headerlink" title="更新 NPM"></a>更新 NPM</h3><p><code>npm</code> 是不需要单独安装的，因为在安装 Node 的时候，会连带一起安装 <code>npm</code>，但是，Node 附带的 <code>npm</code> 可能不是最新的版本，最好使用以下命令跟新到最新版本。</p>
+<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><h3 id="更新-NPM"><a href="#更新-NPM" class="headerlink" title="更新 NPM"></a>更新 NPM</h3><p><code>npm</code> 是不需要单独安装的，因为在安装 Node 的时候，会连带一起安装 <code>npm</code>，但是，Node 附带的 <code>npm</code> 可能不是最新的版本，最好使用以下命令跟新到最新版本。</p>
 <figure class="highlight coffeescript"><table><tr><td class="code"><pre><div class="line">$ sudo <span class="built_in">npm</span> install <span class="built_in">npm</span>@latest -g</div></pre></td></tr></table></figure>
 <ul>
 <li><code>@latest</code>表示最新版本</li>
@@ -450,17 +468,13 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/29/basic-algorithm-scripting/" rel="next" title="JS 算法实践 —— 基础篇">
-                <i class="fa fa-chevron-left"></i> JS 算法实践 —— 基础篇
+              <a href="/2016/08/28/computer-network-http/" rel="next" title="HTTP —— TCP/IP 协议">
+                <i class="fa fa-chevron-left"></i> HTTP —— TCP/IP 协议
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/06/http-simple-http-protocal/" rel="prev" title="Http —— 简单的 http 协议">
-                Http —— 简单的 http 协议 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,7 +542,7 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -574,7 +588,7 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起步"><span class="nav-number">1.</span> <span class="nav-text">起步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NPM-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">NPM 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-NPM"><span class="nav-number">1.2.</span> <span class="nav-text">更新 NPM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的-package-json-文件"><span class="nav-number">2.</span> <span class="nav-text">新的 package.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置环境变量"><span class="nav-number">3.</span> <span class="nav-text">设置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看模块的具体信息"><span class="nav-number">4.</span> <span class="nav-text">查看模块的具体信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列出安装的所有模块"><span class="nav-number">5.</span> <span class="nav-text">列出安装的所有模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装模块"><span class="nav-number">6.</span> <span class="nav-text">安装模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">6.1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局安装"><span class="nav-number">6.1.1.</span> <span class="nav-text">全局安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地安装"><span class="nav-number">6.1.2.</span> <span class="nav-text">本地安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接输入Github代码库地址"><span class="nav-number">6.1.3.</span> <span class="nav-text">直接输入Github代码库地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强制重新安装"><span class="nav-number">6.1.4.</span> <span class="nav-text">强制重新安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新安装所有模块"><span class="nav-number">6.1.5.</span> <span class="nav-text">重新安装所有模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定参数"><span class="nav-number">6.2.</span> <span class="nav-text">指定参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装不同的版本"><span class="nav-number">6.2.1.</span> <span class="nav-text">安装不同的版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定依赖关系"><span class="nav-number">6.2.2.</span> <span class="nav-text">指定依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Beta-版本"><span class="nav-number">6.2.3.</span> <span class="nav-text">Beta 版本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新与卸载"><span class="nav-number">7.</span> <span class="nav-text">更新与卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-update"><span class="nav-number">7.1.</span> <span class="nav-text">npm update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-uninstall"><span class="nav-number">7.2.</span> <span class="nav-text">npm uninstall</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行脚本"><span class="nav-number">8.</span> <span class="nav-text">执行脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法-1"><span class="nav-number">8.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号链接"><span class="nav-number">8.2.</span> <span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不加参数"><span class="nav-number">8.3.</span> <span class="nav-text">不加参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流操作"><span class="nav-number">8.4.</span> <span class="nav-text">流操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">8.5.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册用户"><span class="nav-number">9.</span> <span class="nav-text">注册用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布模块"><span class="nav-number">10.</span> <span class="nav-text">发布模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">11.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起步"><span class="nav-number">1.</span> <span class="nav-text">起步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-NPM"><span class="nav-number">1.1.</span> <span class="nav-text">更新 NPM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的-package-json-文件"><span class="nav-number">2.</span> <span class="nav-text">新的 package.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置环境变量"><span class="nav-number">3.</span> <span class="nav-text">设置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看模块的具体信息"><span class="nav-number">4.</span> <span class="nav-text">查看模块的具体信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列出安装的所有模块"><span class="nav-number">5.</span> <span class="nav-text">列出安装的所有模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装模块"><span class="nav-number">6.</span> <span class="nav-text">安装模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">6.1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局安装"><span class="nav-number">6.1.1.</span> <span class="nav-text">全局安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地安装"><span class="nav-number">6.1.2.</span> <span class="nav-text">本地安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接输入Github代码库地址"><span class="nav-number">6.1.3.</span> <span class="nav-text">直接输入Github代码库地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强制重新安装"><span class="nav-number">6.1.4.</span> <span class="nav-text">强制重新安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新安装所有模块"><span class="nav-number">6.1.5.</span> <span class="nav-text">重新安装所有模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定参数"><span class="nav-number">6.2.</span> <span class="nav-text">指定参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装不同的版本"><span class="nav-number">6.2.1.</span> <span class="nav-text">安装不同的版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定依赖关系"><span class="nav-number">6.2.2.</span> <span class="nav-text">指定依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Beta-版本"><span class="nav-number">6.2.3.</span> <span class="nav-text">Beta 版本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新与卸载"><span class="nav-number">7.</span> <span class="nav-text">更新与卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-update"><span class="nav-number">7.1.</span> <span class="nav-text">npm update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-uninstall"><span class="nav-number">7.2.</span> <span class="nav-text">npm uninstall</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行脚本"><span class="nav-number">8.</span> <span class="nav-text">执行脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法-1"><span class="nav-number">8.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号链接"><span class="nav-number">8.2.</span> <span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不加参数"><span class="nav-number">8.3.</span> <span class="nav-text">不加参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流操作"><span class="nav-number">8.4.</span> <span class="nav-text">流操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">8.5.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册用户"><span class="nav-number">9.</span> <span class="nav-text">注册用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布模块"><span class="nav-number">10.</span> <span class="nav-text">发布模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">11.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
           </div>
         </section>
@@ -607,7 +621,7 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -638,8 +652,6 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
 
 
 
-  
-
 
 
   
@@ -657,9 +669,6 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
   
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
 
   
 
@@ -672,6 +681,13 @@ Node 的开放式 模块 登记和管理 系统，网址是 npmjs.org
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
