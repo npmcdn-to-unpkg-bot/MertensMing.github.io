@@ -1549,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #858f3c;
+  background: #afedcf;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2522,14 +2522,50 @@ body {
 }
 .site-meta,
 .headband {
-  background-color: #d48376;
+  background-color: #e78170;
 }
 .menu-item-icon {
-  color: #d48376;
+  color: #e78170;
 }
 .menu a {
-  color: #999;
+  color: #888;
 }
 .post-body {
   font-family: serif;
+}
+.site-title {
+  font-family: fantasy;
+}
+.post-more-link .btn,
+.post-more-link .btn:hover {
+  color: #e78170;
+  border-color: #888;
+  border-radius: 4px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.post-more-link .btn:hover {
+  color: #fff;
+  background-color: #e78170;
+}
+.back-to-top {
+  background-color: #e78170;
+}
+.posts-expand .post-title-link {
+  font-family: monospace;
+}
+.site-author-name,
+.site-state-item-count {
+  color: #e78170;
+}
+.site-author-name {
+  font-family: fantasy;
+  margin-top: 10px;
+  font-size: 18px;
+}
+.header-inner,
+.sidebar-inner,
+.content-wrap {
+  box-shadow: 1px 1px 5px #e78170;
+  border-radius: 2px;
 }
