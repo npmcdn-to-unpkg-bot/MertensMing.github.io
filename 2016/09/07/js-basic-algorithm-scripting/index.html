@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mertens blog FE" />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -78,12 +78,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mertens Blog">
-<meta property="og:url" content="mertensming.github.io/tags/前端工程/index.html">
+<meta name="description" content="用程序员的思维去思考问题，开始吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 算法实践 —— 基础篇">
+<meta property="og:url" content="mertensming.github.io/2016/09/07/js-basic-algorithm-scripting/index.html">
 <meta property="og:site_name" content="Mertens Blog">
+<meta property="og:description" content="用程序员的思维去思考问题，开始吧！">
+<meta property="og:updated_time" content="2016-09-07T16:01:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mertens Blog">
+<meta name="twitter:title" content="JS 算法实践 —— 基础篇">
+<meta name="twitter:description" content="用程序员的思维去思考问题，开始吧！">
 
 
 
@@ -104,9 +108,9 @@
 
 
 
-  <link rel="canonical" href="mertensming.github.io/tags/前端工程/"/>
+  <link rel="canonical" href="mertensming.github.io/2016/09/07/js-basic-algorithm-scripting/"/>
 
-  <title> 标签: 前端工程 | Mertens Blog </title>
+  <title> JS 算法实践 —— 基础篇 | Mertens Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -127,7 +131,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,74 +219,137 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        前端工程
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/20/react-redux-router/" itemprop="url">
-              
-                <span itemprop="name">使用 React、React-router 和 Redux 开发前端应用</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-20T15:00:17+08:00"
-              content="2016-08-20" >
-          08-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/20/webpack-config-react/" itemprop="url">
-              
-                <span itemprop="name">Webpack 配置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-20T07:38:39+08:00"
-              content="2016-08-20" >
-          08-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS 算法实践 —— 基础篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T22:35:31+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>用程序员的思维去思考问题，开始吧！</p>
+<a id="more"></a>
+<h2 id="翻转字符串"><a href="#翻转字符串" class="headerlink" title="翻转字符串"></a>翻转字符串</h2><p>思路：</p>
+<ol>
+<li>先把字符串转化成数组</li>
+<li>将数组的顺序翻转</li>
+<li>把数组转化成字符串</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseString</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> arr = str.split(<span class="string">''</span>);</div><div class="line">  str = arr.reverse().join(<span class="string">''</span>);</div><div class="line">  <span class="keyword">return</span> str;</div><div class="line">&#125;</div><div class="line">reverseString(<span class="string">'hello'</span>); <span class="comment">// olleh</span></div></pre></td></tr></table></figure>
+<h2 id="阶乘函数"><a href="#阶乘函数" class="headerlink" title="阶乘函数"></a>阶乘函数</h2><p><code>阶乘函数</code>是<code>递归(Haskell)函数</code>典型示例。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorialize</span>(<span class="params">num</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (num &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num === <span class="number">0</span> || num === <span class="number">1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 调用递归</span></div><div class="line">  <span class="keyword">return</span> num * factorialize(num - <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="检测回文"><a href="#检测回文" class="headerlink" title="检测回文"></a>检测回文</h2><p>如果给定的字符串是回文，返回<code>true</code>，反之，返回<code>false</code>。<br>如果一个字符串<code>忽略标点符号</code>、<code>大小写</code>和<code>空格</code>，正着读和反着读一模一样，那么这个字符串就是<code>palindrome</code>(回文)。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/07/ajax-xmlhttprequest-object/" rel="next" title="AJAX —— XMLHttpRequest 对象">
+                <i class="fa fa-chevron-left"></i> AJAX —— XMLHttpRequest 对象
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/08/js-object-orented-and-function-programing/" rel="prev" title="面向对象编程和函数式编程实践">
+                面向对象编程和函数式编程实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -290,6 +357,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -309,8 +380,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -360,6 +440,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#翻转字符串"><span class="nav-number">1.</span> <span class="nav-text">翻转字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阶乘函数"><span class="nav-number">2.</span> <span class="nav-text">阶乘函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测回文"><span class="nav-number">3.</span> <span class="nav-text">检测回文</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -458,6 +549,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
