@@ -1549,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff6fff;
+  background: #b6ff95;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2562,6 +2562,7 @@ body {
   font-family: fantasy;
   margin-top: 10px;
   font-size: 18px;
+  text-shadow: 1px 1px 1px #999;
 }
 .header-inner,
 .sidebar-inner,
@@ -2571,4 +2572,10 @@ body {
 }
 .posts-expand .post-body img {
   margin: 0;
+}
+.site-state-item:nth-child(2) {
+  display: none;
+}
+body {
+  font-family: monospace;
 }
