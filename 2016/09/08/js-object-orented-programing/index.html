@@ -1,0 +1,683 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面向对象,函数式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="原型链在 JS 中，原型链是实现继承的主要方法，它的基本思想就是让一个引用类型去继承另外一个引用类型的属性和方法。
+构造函数、原型和实例之间的关系我们先来看看以下代码。我们定义了一个构造函数（MyConstructor），并且用这个构造函数构造出一个实例（myInstance）。
+function MyConstructor() &amp;#123;  this.name = &apos;test&apos;;&amp;#125;v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS - 面向对象编程实践">
+<meta property="og:url" content="mertensming.github.io/2016/09/08/js-object-orented-programing/index.html">
+<meta property="og:site_name" content="Mertens Blog">
+<meta property="og:description" content="原型链在 JS 中，原型链是实现继承的主要方法，它的基本思想就是让一个引用类型去继承另外一个引用类型的属性和方法。
+构造函数、原型和实例之间的关系我们先来看看以下代码。我们定义了一个构造函数（MyConstructor），并且用这个构造函数构造出一个实例（myInstance）。
+function MyConstructor() &amp;#123;  this.name = &apos;test&apos;;&amp;#125;v">
+<meta property="og:image" content="mertensming.github.io/1.png">
+<meta property="og:image" content="mertensming.github.io/2.png">
+<meta property="og:image" content="mertensming.github.io/3.png">
+<meta property="og:updated_time" content="2016-09-09T06:42:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS - 面向对象编程实践">
+<meta name="twitter:description" content="原型链在 JS 中，原型链是实现继承的主要方法，它的基本思想就是让一个引用类型去继承另外一个引用类型的属性和方法。
+构造函数、原型和实例之间的关系我们先来看看以下代码。我们定义了一个构造函数（MyConstructor），并且用这个构造函数构造出一个实例（myInstance）。
+function MyConstructor() &amp;#123;  this.name = &apos;test&apos;;&amp;#125;v">
+<meta name="twitter:image" content="mertensming.github.io/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="mertensming.github.io/2016/09/08/js-object-orented-programing/"/>
+
+  <title> JS - 面向对象编程实践 | Mertens Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mertens Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS - 面向对象编程实践
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-08T08:30:25+08:00" content="2016-09-08">
+              2016-09-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>在 JS 中，原型链是实现继承的主要方法，它的基本思想就是让一个引用类型去继承另外一个引用类型的属性和方法。</p>
+<h3 id="构造函数、原型和实例之间的关系"><a href="#构造函数、原型和实例之间的关系" class="headerlink" title="构造函数、原型和实例之间的关系"></a>构造函数、原型和实例之间的关系</h3><p>我们先来看看以下代码。我们定义了一个构造函数（<code>MyConstructor</code>），并且用这个构造函数构造出一个实例（<code>myInstance</code>）。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'test'</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> myInstance = <span class="keyword">new</span> MyConstructor();</div></pre></td></tr></table></figure>
+<p>接下来，我们在控制台输出这两个对象看一下：</p>
+<a id="more"></a>
+<p><img src="1.png"></p>
+<p>它们之间的关系就如上图所示。那么，我们现在让这个关系更加复杂，我们把 <code>MyConstructor.prototype</code> 等于另外一个构造函数的实例，看看结果会怎么样？</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'test'</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AnotherConstructor</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.desc = <span class="string">"我是另外一个构造函数！"</span>;</div><div class="line">&#125;</div><div class="line">MyConstructor.prototype = <span class="keyword">new</span> AnotherConstructor();</div><div class="line"><span class="keyword">var</span> myInstance = <span class="keyword">new</span> MyConstructor();</div></pre></td></tr></table></figure>
+<p><img src="2.png"></p>
+<p>它们的结构关系就变成了上图那样子。</p>
+<h3 id="instanceof-运算符"><a href="#instanceof-运算符" class="headerlink" title="instanceof 运算符"></a>instanceof 运算符</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">object <span class="keyword">instanceof</span> <span class="keyword">constructor</span></div></pre></td></tr></table></figure>
+<p><code>instanceof</code> 运算符用来测试 <code>object</code> 在其原型链构造函数上是否具有 <code>constructor</code></p>
+<h2 id="对象类型定义-Object-Type"><a href="#对象类型定义-Object-Type" class="headerlink" title="对象类型定义- Object Type"></a>对象类型定义- Object Type</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyType</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> MyType))</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Constructor can’t be called as a function"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myInstance = <span class="keyword">new</span> MyType();</div><div class="line">MyType(); <span class="comment">// Error: Constructor can’t be called as a function</span></div></pre></td></tr></table></figure>
+<h3 id="实例成员-Instance-Members"><a href="#实例成员-Instance-Members" class="headerlink" title="实例成员 - Instance Members"></a>实例成员 - Instance Members</h3><p>通过<code>&quot;new&quot;</code>关键字可以创建一个<code>实例对象</code>，而<code>实例成员</code>（变量或方法）能够通过这个实例对象来访问。<br>实例成员可以通过<code>&quot;this&quot;关键字</code>，原型（<code>prototype</code>），<code>构造函数</code>或<code>Object.defineProperty</code>来定义。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> voice = <span class="string">'Meow'</span>;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> voice;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">Cat.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'Eating'</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat(<span class="string">'Fluffy'</span>);</div><div class="line"><span class="built_in">Object</span>.defineProperty(cat, <span class="string">"numLegs"</span>, &#123;</div><div class="line">  value: <span class="number">4</span>,</div><div class="line">  writable: <span class="literal">true</span>,</div><div class="line">  enumerable: <span class="literal">true</span>,</div><div class="line">  configurable: <span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(cat.name); <span class="comment">// Fluffy</span></div><div class="line"><span class="built_in">console</span>.log(cat.numLegs); <span class="comment">// 4</span></div><div class="line"><span class="built_in">console</span>.log(cat.say()); <span class="comment">// Meow</span></div><div class="line"><span class="built_in">console</span>.log(cat.eat()); <span class="comment">// Eating</span></div></pre></td></tr></table></figure>
+<h4 id="静态成员-Static-Members"><a href="#静态成员-Static-Members" class="headerlink" title="静态成员 - Static Members"></a>静态成员 - Static Members</h4><blockquote>
+<p>在<code>C++</code>中，静态成员是<code>属于整个类</code>的而不是某个对象，静态成员变量<code>只存储一份供所有对象共用</code>。所以在所有对象中都可以共享它。使用静态成员变量<code>实现多个对象之间的数据共享</code>不会破坏隐藏的原则，保证了安全性还可以节省内存。</p>
+</blockquote>
+<p>类比上面 <code>C++</code> 对于静态成员的定义，可以得出以下的总结：<br><strong>在 <code>JS</code> 中，静态成员是属于整个<code>构造函数</code>而不是属于某个<code>实例对象</code>的，所有的实例对象都可以<code>共享</code>静态成员。</strong></p>
+<ul>
+<li><code>JavaScript</code>中并不直接支持静态成员。</li>
+<li>可以通过<code>构造函数</code>来创建静态成员。</li>
+<li>静态成员不允许通过<code>&quot;this&quot;</code>关键字直接访问。</li>
+</ul>
+<h5 id="公共静态成员"><a href="#公共静态成员" class="headerlink" title="公共静态成员"></a>公共静态成员</h5><p>公共静态成员（函数&amp;变量）在构造函数的外部可以使用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Factory</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">// 公共静态方法</span></div><div class="line">Factory.getType = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"Object Factory"</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 公共静态字段 (public static field)</span></div><div class="line">Factory.versionId = <span class="string">"F2.0"</span>;</div><div class="line">Factory.prototype.test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.versionId); <span class="comment">// undefined</span></div><div class="line">  <span class="built_in">console</span>.log(Factory.versionId); <span class="comment">// F2.0</span></div><div class="line">  <span class="built_in">console</span>.log(Factory.getType()); <span class="comment">// Object Factory</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> factory = <span class="keyword">new</span> Factory();</div><div class="line">factory.test();</div></pre></td></tr></table></figure>
+<h5 id="私有静态成员"><a href="#私有静态成员" class="headerlink" title="私有静态成员"></a>私有静态成员</h5><p>私有静态成员（函数&amp;变量）只能在构造函数的内部使用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> Book = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 私有静态字段 (private static field)</span></div><div class="line">  <span class="keyword">var</span> numOfBooks = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// 私有静态方法 (private static method)</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">checkIsbn</span>(<span class="params">isbn</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (isbn.length != <span class="number">10</span> &amp;&amp; isbn.length != <span class="number">13</span>)</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"isbn is not valid!"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">isbn, title</span>) </span>&#123;</div><div class="line">    checkIsbn(isbn);</div><div class="line">    <span class="keyword">this</span>.isbn = isbn;</div><div class="line">    <span class="keyword">this</span>.title = title;</div><div class="line">    numOfBooks++;</div><div class="line">    <span class="keyword">this</span>.getNumOfBooks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> numOfBooks;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> Book;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h3 id="抽象类型-Abstract-Types"><a href="#抽象类型-Abstract-Types" class="headerlink" title="抽象类型 - Abstract Types"></a>抽象类型 - Abstract Types</h3><blockquote>
+<p><code>Javascript</code> 是一门弱类型语言，声明一个变量的时候不需要指定它的类型。这就减弱了对于像<code>接口</code>这样的抽象类型的依赖。但有时候，你仍然希望使用抽象类型来将一些共有的功能放在一起，并采用继承的机制，让其他类型也具有相同的功能，你可以参考下面的示例：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> abstractCreateLock = <span class="literal">false</span>;</div><div class="line"></div><div class="line">  <span class="comment">// abstract type</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">BaseForm</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (abstractCreateLock)</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Can’t instantiate BaseForm!"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  BaseForm.prototype = &#123;&#125;;</div><div class="line">  BaseForm.prototype.post = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Not implemented!"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">GridForm</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">  GridForm.prototype = <span class="keyword">new</span> BaseForm();</div><div class="line">  abstractCreateLock = <span class="literal">true</span>;</div><div class="line">  GridForm.prototype.post = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"Grid is posted."</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">window</span>.BaseForm = BaseForm;</div><div class="line">  <span class="built_in">window</span>.GridForm = GridForm;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">var</span> myGrid = <span class="keyword">new</span> GridForm();</div><div class="line"><span class="built_in">console</span>.log(myGrid.post()); <span class="comment">// Grid is posted.</span></div><div class="line"><span class="keyword">var</span> myForm = <span class="keyword">new</span> BaseForm(); <span class="comment">// Error: Can’t instantiate BaseForm!</span></div></pre></td></tr></table></figure>
+<h3 id="接口-Interfaces"><a href="#接口-Interfaces" class="headerlink" title="接口 - Interfaces"></a>接口 - Interfaces</h3><blockquote>
+<p><code>JavaScript</code>同样没有对接口的直接支持。你可以通过下面代码中实现的机制来定义接口。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> Interface = <span class="function"><span class="keyword">function</span>(<span class="params">name, methods</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="comment">// copies array</span></div><div class="line">  <span class="keyword">this</span>.methods = methods.slice(<span class="number">0</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Interface.checkImplements = <span class="function"><span class="keyword">function</span>(<span class="params">obj, interfaceObj</span>) </span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; interfaceObj.methods.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> method = interfaceObj.methods[i];</div><div class="line">    <span class="keyword">if</span> (!obj[method] || <span class="keyword">typeof</span> obj[method] !== <span class="string">"function"</span>)</div><div class="line">      thrownewError(<span class="string">"Interfacenotimplemented! Interface: "</span> + interfaceObj.name + <span class="string">" Method: "</span> + method);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> iMaterial = <span class="keyword">new</span> Interface(<span class="string">"IMaterial"</span>, [<span class="string">"getName"</span>, <span class="string">"getPrice"</span>]);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Product</span>(<span class="params">name, price, type</span>) </span>&#123;</div><div class="line">  Interface.checkImplements(<span class="keyword">this</span>, iMaterial);</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.price = price;</div><div class="line">  <span class="keyword">this</span>.type = type;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Product.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;;</div><div class="line">Product.prototype.getPrice = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> firstCar = <span class="keyword">new</span> Product(<span class="string">"Super Car X11"</span>, <span class="number">20000</span>, <span class="string">"Car"</span>);</div><div class="line"><span class="built_in">console</span>.log(firstCar.getName()); <span class="comment">// Super Car X11</span></div><div class="line"><span class="keyword">delete</span> Product.prototype.getPrice;</div><div class="line"><span class="keyword">var</span> secondCar = <span class="keyword">new</span> Product(<span class="string">"Super Car X12"</span>, <span class="number">30000</span>, <span class="string">"Car"</span>); <span class="comment">// Error: Interface not implemented!</span></div></pre></td></tr></table></figure>
+<h3 id="单例对象-Singleton-Object"><a href="#单例对象-Singleton-Object" class="headerlink" title="单例对象 - Singleton Object"></a>单例对象 - Singleton Object</h3><blockquote>
+<p>如果你希望在全局范围内只创建一个某一类型的示例，那么你可以有下面两种方式来实现一个单例。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> Logger = &#123;</div><div class="line">  enabled: <span class="literal">true</span>,</div><div class="line">  log: <span class="function"><span class="keyword">function</span>(<span class="params">logText</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.enabled) &#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(logText);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Logger</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Logger.enabled = <span class="literal">true</span>;</div><div class="line">Logger.log = <span class="function"><span class="keyword">function</span>(<span class="params">logText</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (Logger.enabled) &#123;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(logText);</div><div class="line">&#125;;</div><div class="line">Logger.log(<span class="string">"test"</span>); <span class="comment">// test</span></div><div class="line">Logger.enabled = <span class="literal">false</span>;</div><div class="line">Logger.log(<span class="string">"test"</span>); <span class="comment">//</span></div></pre></td></tr></table></figure>
+<h2 id="创建对象-Object-Creation"><a href="#创建对象-Object-Creation" class="headerlink" title="创建对象 - Object Creation"></a>创建对象 - Object Creation</h2><h3 id="通过-new-关键字创建"><a href="#通过-new-关键字创建" class="headerlink" title="通过 new 关键字创建"></a>通过 new 关键字创建</h3><p>可以使用<code>&quot;new&quot;</code>关键字来创建<code>内置类型</code>或用户<code>自定义类型</code>的实例对象，它会先<code>创建一个空的实例对象</code>，然后再调用构造函数来给这个对象的成员变量赋值，从而实现对象的初始化。</p>
+<h3 id="通过字面量直接创建"><a href="#通过字面量直接创建" class="headerlink" title="通过字面量直接创建"></a>通过字面量直接创建</h3><p>通过字面量创建对象非常简单和直接，还可以创建嵌套对象。</p>
+<h2 id="成员作用域-Scoping"><a href="#成员作用域-Scoping" class="headerlink" title="成员作用域 - Scoping"></a>成员作用域 - Scoping</h2><h3 id="私有字段-Private-Fields"><a href="#私有字段-Private-Fields" class="headerlink" title="私有字段 - Private Fields"></a>私有字段 - Private Fields</h3><p>在<code>JavaScript</code>中没有对私有字段的直接支持，可以通过<code>构造函数</code>来实现它。</p>
+<ul>
+<li>首先将变量在<code>构造函数</code>中定义为私有的</li>
+<li>任何需要使用到这个私有字段的<code>方法</code>都需要定义在构造函数中</li>
+<li>这样就可以<code>通过这些共有方法</code>来<code>访问这个私有变量</code>了。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Customer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// private field</span></div><div class="line">  <span class="keyword">var</span> risk = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.getRisk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> risk;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">this</span>.setRisk = <span class="function"><span class="keyword">function</span>(<span class="params">newRisk</span>) </span>&#123;</div><div class="line">    risk = newRisk;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">this</span>.checkRisk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (risk &gt; <span class="number">1000</span>)</div><div class="line">      <span class="keyword">return</span> <span class="string">"Risk Warning"</span>;</div><div class="line">    <span class="keyword">return</span> <span class="string">"No Risk"</span>;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Customer.prototype.addOrder = <span class="function"><span class="keyword">function</span>(<span class="params">orderAmount</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.setRisk(orderAmount + <span class="keyword">this</span>.getRisk());</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.getRisk();</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> customer = <span class="keyword">new</span> Customer();</div><div class="line"><span class="built_in">console</span>.log(customer.getRisk()); <span class="comment">// 0</span></div><div class="line"><span class="built_in">console</span>.log(customer.addOrder(<span class="number">2000</span>)); <span class="comment">// 2000</span></div><div class="line"><span class="built_in">console</span>.log(customer.checkRisk()); <span class="comment">// Risk Warning</span></div></pre></td></tr></table></figure>
+<h3 id="私有方法-Private-Methods"><a href="#私有方法-Private-Methods" class="headerlink" title="私有方法 - Private Methods"></a>私有方法 - Private Methods</h3><p>私有方法也被称作内部函数，往往被定义在构造函数中，从外部无法直接访问它们。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Customer</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">var</span> risk = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.type = findType();</div><div class="line"></div><div class="line">  <span class="comment">// private method</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">findType</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(that.name);</div><div class="line">    <span class="built_in">console</span>.log(risk);</div><div class="line">    <span class="keyword">return</span> <span class="string">"GOLD"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果私有内部函数被实例化并被构造函数返回，那么它将可以从外部被调用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Outer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Inner();</div><div class="line"></div><div class="line">  <span class="comment">//private inner</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Inner</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"Hello"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">(<span class="keyword">new</span> Outer()).sayHello(); <span class="comment">// Hello</span></div></pre></td></tr></table></figure>
+<h3 id="特权方法-Privileged-Methods"><a href="#特权方法-Privileged-Methods" class="headerlink" title="特权方法 - Privileged Methods"></a>特权方法 - Privileged Methods</h3><p>在构造函数中使用<code>&quot;this.&quot;</code>声明的函数称为<code>特权方法</code>，它们能够<code>访问私有字段</code>，并且可以<code>从外部调用</code>。</p>
+<h3 id="公共字段-Public-Fields"><a href="#公共字段-Public-Fields" class="headerlink" title="公共字段 - Public Fields"></a>公共字段 - Public Fields</h3><p>公共字段的意思是，所有实例对象都会有这个字段，但是这个字段的值是每个实例对象都不共享的，当实例对象改变它的某一个字段的值时，并不会改变其他对象中该字段的值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Customer</span>(<span class="params">name, orderAmount</span>) </span>&#123;</div><div class="line">  <span class="comment">// public fields</span></div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.orderAmount = orderAmount;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Customer.prototype.type = <span class="string">"NORMAL"</span>;</div><div class="line">Customer.prototype.report = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 注意：这里的 this 是指向 实例对象</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.orderAmount);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.type);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.country);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Customer.prototype.promoteType = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 注意：这里的 this 是指向 实例对象</span></div><div class="line">  <span class="comment">// 所以这个操作只是在实例对象上新建了一个 type 属性</span></div><div class="line">  <span class="comment">// 覆盖掉了原型链上的 type 属性</span></div><div class="line">  <span class="comment">// 实际上不会改变原型链上的 type 属性</span></div><div class="line">  <span class="keyword">this</span>.type = <span class="string">"SILVER"</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> customer1 = <span class="keyword">new</span> Customer(<span class="string">"Customer 1"</span>, <span class="number">10</span>);</div><div class="line"><span class="comment">// public field</span></div><div class="line">customer1.country = <span class="string">"A Country"</span>;</div><div class="line">customer1.report(); <span class="comment">// Customer 1</span></div><div class="line"><span class="comment">// 10</span></div><div class="line"><span class="comment">// NORMAL</span></div><div class="line"><span class="comment">// A Country</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> customer2 = <span class="keyword">new</span> Customer(<span class="string">"Customer 2"</span>, <span class="number">20</span>);</div><div class="line">customer2.promoteType();</div><div class="line"><span class="built_in">console</span>.log(customer2.type); <span class="comment">// SILVER</span></div><div class="line"><span class="built_in">console</span>.log(customer1.type); <span class="comment">// NORMAL</span></div></pre></td></tr></table></figure>
+<h3 id="公共方法-Public-Methods"><a href="#公共方法-Public-Methods" class="headerlink" title="公共方法 - Public Methods"></a>公共方法 - Public Methods</h3><p>参见上面的公共字段。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Customer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// public method</span></div><div class="line">  <span class="keyword">this</span>.shipOrder = <span class="function"><span class="keyword">function</span>(<span class="params">shipAmount</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> shipAmount;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// public method</span></div><div class="line">Customer.prototype.addOrder = <span class="function"><span class="keyword">function</span>(<span class="params">orderAmount</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> totalOrder = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</div><div class="line">    totalOrder += <span class="built_in">arguments</span>[i];</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> totalOrder;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> customer = <span class="keyword">new</span> Customer();</div><div class="line"><span class="comment">// public method</span></div><div class="line">customer.findType = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"NORMAL"</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(customer.addOrder(<span class="number">25</span>, <span class="number">75</span>)); <span class="comment">// 100</span></div><div class="line"><span class="built_in">console</span>.log(customer.shipOrder(<span class="number">50</span>)); <span class="comment">// 50</span></div><div class="line"><span class="built_in">console</span>.log(customer.findType()); <span class="comment">// NORMAL</span></div></pre></td></tr></table></figure>
+<h2 id="继承-Inheritance"><a href="#继承-Inheritance" class="headerlink" title="继承 - Inheritance"></a>继承 - Inheritance</h2><p>“<code>原型继承</code>“——使用原型机制实现继承的方法，是最常用的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> parentPrivate = <span class="string">"parent private data"</span>;</div><div class="line">  <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.parentMethodForPrivate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> parentPrivate;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Parent.prototype = &#123;</div><div class="line">  parentData: <span class="string">"parent data"</span>,</div><div class="line">  parentMethod: <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"parent method"</span>;</div><div class="line">  &#125;,</div><div class="line">  overrideMethod: <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> arg + <span class="string">" overriden parent method"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 调用 Parent</span></div><div class="line">  <span class="comment">// 相当于直接把 Parent 的代码复制过来的效果</span></div><div class="line">  <span class="comment">// 这样就继承了 Parent 的属性和方法</span></div><div class="line">  Parent.call(<span class="keyword">this</span>);</div><div class="line">  <span class="comment">/*</span></div><div class="line">  var parentPrivate = "parent private data";</div><div class="line">  var that = this;</div><div class="line">  this.parentMethodForPrivate = function() &#123;</div><div class="line">    return parentPrivate;</div><div class="line">  &#125;;</div><div class="line">  */</div><div class="line">  <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">  <span class="comment">// 下面定义自己构造函数的方法</span></div><div class="line">  <span class="keyword">this</span>.parentPrivate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> that.parentMethodForPrivate();</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 还要继承 Parent 的 prototype</span></div><div class="line"><span class="comment">// 为什么不直接 Child.prototype = Parent.prototype 呢？</span></div><div class="line">Child.prototype = <span class="keyword">new</span> Parent();</div><div class="line"></div><div class="line"><span class="comment">// 因为这里还需要把 constructor 改成 Child</span></div><div class="line">Child.prototype.constructor = Child;</div><div class="line"><span class="comment">// 另外还可以在 Child.prototype 加一些额外的方法</span></div><div class="line">Child.prototype.extensionMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"child’s "</span> + <span class="keyword">this</span>.parentData;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 还可以写一些方法覆盖 Parent.prototype 里面的方法</span></div><div class="line">Child.prototype.overrideMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"Invoking from child"</span> + Parent.prototype.</div><div class="line">  overrideMethod.call(<span class="keyword">this</span>, <span class="string">" test"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Child();</div><div class="line"></div><div class="line"><span class="comment">// 在控制台输出这个实例看看吧！</span></div><div class="line"><span class="built_in">console</span>.dir(child);</div></pre></td></tr></table></figure>
+<p><img src="3.png"></p>
+<h2 id="模块化-Modularization"><a href="#模块化-Modularization" class="headerlink" title="模块化 - Modularization"></a>模块化 - Modularization</h2><blockquote>
+<p>当我们的项目中，自定义的对象类型越来越多时，我们需要更有效地组织和管理这些类定义，并控制他们的可见性，相互依赖关系以及加载顺序。<code>&quot;命名空间&quot;</code>和<code>&quot;模块&quot;</code>能够帮助我们很好地解决这个问题。</p>
+</blockquote>
+<h3 id="命名空间-Namespaces"><a href="#命名空间-Namespaces" class="headerlink" title="命名空间 - Namespaces"></a>命名空间 - Namespaces</h3><p><code>JavaScript</code>中并没有<code>命名空间</code>的概念。我们需要通过<code>对象</code>来创建命名空间，并将我们定义的对象类型放入其中。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">//create namespace</span></div><div class="line"><span class="keyword">var</span> myLib = &#123;&#125;;</div><div class="line">myLib.myPackage = &#123;&#125;;</div><div class="line"><span class="comment">//Register types to namespace</span></div><div class="line">myLib.myPackage.MyType1 = MyType1;</div><div class="line">myLib.myPackage.MyType2 = MyType2;</div></pre></td></tr></table></figure>
+<h3 id="模块-Modules"><a href="#模块-Modules" class="headerlink" title="模块 - Modules"></a>模块 - Modules</h3><blockquote>
+<p>模块被用来将我们的<code>JavaScript</code>代码分解到包中。模块可以引用其他模块或将自己定义的对象类型对外暴露，以供其他模块使用。同时它能够用来管理模块间的依赖关系，并按照我们指定的顺序进行加载。目前有一些第三方库可以用来实现模块的管理。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Module.define(<span class="string">"module1.js"</span>, [<span class="string">"dependent_module1.js"</span>, <span class="string">"dependent_module2.js"</span>, ...],</div><div class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">dependentMod1, dependentMod2</span>) </span>&#123; <span class="comment">//IMPORTS</span></div><div class="line"></div><div class="line">    <span class="comment">//TYPE DEFINITIONS</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ExportedType1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// use of dependent module’s types</span></div><div class="line">      <span class="keyword">var</span> dependentType = <span class="keyword">new</span> dependentMod1.DependentType1();</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ExportedType2</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="comment">// EXPORTS</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      ExportedType1: ExportedType1,</div><div class="line">      ExportedType2: ExportedType2,</div><div class="line">      ...</div><div class="line">    &#125;;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line"><span class="comment">//To use a module (can work asynchronously or synchronously):</span></div><div class="line">Module.use([<span class="string">"module1.js"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">aModule</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Loaded aModule!"</span>);</div><div class="line">  <span class="keyword">var</span> AType = aModule.AnExportedType;</div><div class="line">  <span class="keyword">var</span> atype1Instance = <span class="keyword">new</span> AType();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>下面的例子中，我们在模块里定义新的类型，并且引用其他模块并将自身的公共类型对外暴露。</p>
+<h2 id="自定义异常-Custom-Exceptions"><a href="#自定义异常-Custom-Exceptions" class="headerlink" title="自定义异常 - Custom Exceptions"></a>自定义异常 - Custom Exceptions</h2><blockquote>
+<p><code>JavaScript</code>中有一些内部定义的异常，如<code>Error</code>、<code>TypeError</code>和<code>SyntaxError</code>。它们会在运行时被创建和抛出。所有的异常都是”<code>unchecked</code>“。一个普通的对象也可以被用作一个异常，并在<code>throw</code>语句中抛出。因此，我们可以创建自己定义的异常对象，并且在程序中捕获它们进行处理。</p>
+</blockquote>
+<p>一个异常处理的最佳实践是，扩展<code>JavaScript</code>中标准的<code>Error</code>对象。</p>
+<p>下面，我们利用 <code>原型继承</code>，扩展两个自定义异常。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">BaseException</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">BaseException.prototype = <span class="keyword">new</span> <span class="built_in">Error</span>();</div><div class="line">BaseException.prototype.constructor = BaseException;</div><div class="line">BaseException.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// note that name and message are properties of Error</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">":"</span> + <span class="keyword">this</span>.message;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NegativeNumberException</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">"NegativeNumberException"</span>;</div><div class="line">  <span class="keyword">this</span>.message = <span class="string">"Negative number!Value: "</span> + value;</div><div class="line">&#125;</div><div class="line">NegativeNumberException.prototype = <span class="keyword">new</span> BaseException();</div><div class="line">NegativeNumberException.prototype.constructor = NegativeNumberException;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">EmptyInputException</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">"EmptyInputException"</span>;</div><div class="line">  <span class="keyword">this</span>.message = <span class="string">"Empty input!"</span>;</div><div class="line">&#125;</div><div class="line">EmptyInputException.prototype = <span class="keyword">new</span> BaseException();</div><div class="line">EmptyInputException.prototype.constructor = EmptyInputException;</div></pre></td></tr></table></figure>
+<p>使用自定义异常</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">BaseException</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">BaseException.prototype = <span class="keyword">new</span> <span class="built_in">Error</span>();</div><div class="line">BaseException.prototype.constructor = BaseException;</div><div class="line">BaseException.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// note that name and message are properties of Error</span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">":"</span> + <span class="keyword">this</span>.message;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NegativeNumberException</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">"NegativeNumberException"</span>;</div><div class="line">  <span class="keyword">this</span>.message = <span class="string">"Negative number!Value: "</span> + value;</div><div class="line">&#125;</div><div class="line">NegativeNumberException.prototype = <span class="keyword">new</span> BaseException();</div><div class="line">NegativeNumberException.prototype.constructor = NegativeNumberException;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">EmptyInputException</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">"EmptyInputException"</span>;</div><div class="line">  <span class="keyword">this</span>.message = <span class="string">"Empty input!"</span>;</div><div class="line">&#125;</div><div class="line">EmptyInputException.prototype = <span class="keyword">new</span> BaseException();</div><div class="line">EmptyInputException.prototype.constructor = EmptyInputException;</div><div class="line"></div><div class="line"><span class="keyword">var</span> InputValidator = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> InputValidator = &#123;&#125;;</div><div class="line">  InputValidator.validate = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> validations = [validateNotNegative, validateNotEmpty];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; validations.length; i++) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        validations[i](data);</div><div class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">        <span class="keyword">if</span> (e <span class="keyword">instanceof</span> NegativeNumberException) &#123;</div><div class="line">          <span class="comment">//re-throw</span></div><div class="line">          <span class="keyword">throw</span> e;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> EmptyInputException) &#123;</div><div class="line">          <span class="comment">// tolerate it</span></div><div class="line">          data = <span class="string">"0"</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> InputValidator;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">validateNotNegative</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (data &lt; <span class="number">0</span>)</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> NegativeNumberException(data)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">validateNotEmpty</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (data == <span class="string">""</span> || data.trim() == <span class="string">""</span>)</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> EmptyInputException();</div><div class="line">  &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  InputValidator.validate(<span class="string">"-1"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="built_in">console</span>.log(e.toString()); <span class="comment">// NegativeNumberException:Negative number!Value: -1</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Validation is done."</span>); <span class="comment">// Validation is done.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://www.jianshu.com/p/4a6e8be59261" target="_blank" rel="external">【简明教程】JavaScript面向对象编程</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面向对象/" rel="tag">#面向对象</a>
+          
+            <a href="/tags/函数式/" rel="tag">#函数式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/07/js-basic-algorithm-scripting/" rel="next" title="JS 算法实践 —— 基础篇">
+                <i class="fa fa-chevron-left"></i> JS 算法实践 —— 基础篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/09/http-cache/" rel="prev" title="HTTP —— 缓存">
+                HTTP —— 缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mertens" />
+          <p class="site-author-name" itemprop="name">Mertens</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数、原型和实例之间的关系"><span class="nav-number">1.1.</span> <span class="nav-text">构造函数、原型和实例之间的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof-运算符"><span class="nav-number">1.2.</span> <span class="nav-text">instanceof 运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象类型定义-Object-Type"><span class="nav-number">2.</span> <span class="nav-text">对象类型定义- Object Type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例成员-Instance-Members"><span class="nav-number">2.1.</span> <span class="nav-text">实例成员 - Instance Members</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态成员-Static-Members"><span class="nav-number">2.1.1.</span> <span class="nav-text">静态成员 - Static Members</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#公共静态成员"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">公共静态成员</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#私有静态成员"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">私有静态成员</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类型-Abstract-Types"><span class="nav-number">2.2.</span> <span class="nav-text">抽象类型 - Abstract Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口-Interfaces"><span class="nav-number">2.3.</span> <span class="nav-text">接口 - Interfaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例对象-Singleton-Object"><span class="nav-number">2.4.</span> <span class="nav-text">单例对象 - Singleton Object</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象-Object-Creation"><span class="nav-number">3.</span> <span class="nav-text">创建对象 - Object Creation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-new-关键字创建"><span class="nav-number">3.1.</span> <span class="nav-text">通过 new 关键字创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过字面量直接创建"><span class="nav-number">3.2.</span> <span class="nav-text">通过字面量直接创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员作用域-Scoping"><span class="nav-number">4.</span> <span class="nav-text">成员作用域 - Scoping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#私有字段-Private-Fields"><span class="nav-number">4.1.</span> <span class="nav-text">私有字段 - Private Fields</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有方法-Private-Methods"><span class="nav-number">4.2.</span> <span class="nav-text">私有方法 - Private Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特权方法-Privileged-Methods"><span class="nav-number">4.3.</span> <span class="nav-text">特权方法 - Privileged Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共字段-Public-Fields"><span class="nav-number">4.4.</span> <span class="nav-text">公共字段 - Public Fields</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共方法-Public-Methods"><span class="nav-number">4.5.</span> <span class="nav-text">公共方法 - Public Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承-Inheritance"><span class="nav-number">5.</span> <span class="nav-text">继承 - Inheritance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化-Modularization"><span class="nav-number">6.</span> <span class="nav-text">模块化 - Modularization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间-Namespaces"><span class="nav-number">6.1.</span> <span class="nav-text">命名空间 - Namespaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块-Modules"><span class="nav-number">6.2.</span> <span class="nav-text">模块 - Modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义异常-Custom-Exceptions"><span class="nav-number">7.</span> <span class="nav-text">自定义异常 - Custom Exceptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">8.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mertens</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络传输,HTTP,前端优化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="缓存行为主要由缓存策略决定，缓存策略由内容拥有者（服务器）设置，这些策略主要通过特定的 HTTP 头部来清晰地表达。
+就是说，缓存在浏览器，缓存策略（HTTP 响应头部）由服务器设置。
+服务器在返回响应时，还会发出一组 HTTP 头，用来描述内容类型、长度、缓存指令、验证令牌等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP —— 缓存">
+<meta property="og:url" content="mertensming.github.io/2016/09/09/http-cache/index.html">
+<meta property="og:site_name" content="Mertens Blog">
+<meta property="og:description" content="缓存行为主要由缓存策略决定，缓存策略由内容拥有者（服务器）设置，这些策略主要通过特定的 HTTP 头部来清晰地表达。
+就是说，缓存在浏览器，缓存策略（HTTP 响应头部）由服务器设置。
+服务器在返回响应时，还会发出一组 HTTP 头，用来描述内容类型、长度、缓存指令、验证令牌等。">
+<meta property="og:image" content="mertensming.github.io/2.png">
+<meta property="og:image" content="mertensming.github.io/1.png">
+<meta property="og:image" content="mertensming.github.io/3.png">
+<meta property="og:image" content="mertensming.github.io/4.png">
+<meta property="og:image" content="mertensming.github.io/5.png">
+<meta property="og:updated_time" content="2016-09-09T06:57:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP —— 缓存">
+<meta name="twitter:description" content="缓存行为主要由缓存策略决定，缓存策略由内容拥有者（服务器）设置，这些策略主要通过特定的 HTTP 头部来清晰地表达。
+就是说，缓存在浏览器，缓存策略（HTTP 响应头部）由服务器设置。
+服务器在返回响应时，还会发出一组 HTTP 头，用来描述内容类型、长度、缓存指令、验证令牌等。">
+<meta name="twitter:image" content="mertensming.github.io/2.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="mertensming.github.io/2016/09/09/http-cache/"/>
+
+  <title> HTTP —— 缓存 | Mertens Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mertens Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP —— 缓存
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-09T10:21:48+08:00" content="2016-09-09">
+              2016-09-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>缓存行为主要由缓存策略决定，缓存策略由内容拥有者（服务器）设置，这些策略主要通过特定的 HTTP 头部来清晰地表达。</p>
+<p>就是说，缓存在浏览器，缓存策略（HTTP 响应头部）由服务器设置。</p>
+<p>服务器在返回响应时，还会发出一组 <code>HTTP</code> 头，用来描述<code>内容类型</code>、<code>长度</code>、<code>缓存指令</code>、<code>验证令牌</code>等。</p>
+<a id="more"></a>
+<p><img src="2.png" alt=""></p>
+<p>例如，在上图的交互中，服务器返回了一个 <code>1024</code> 字节的响应，指导客户端<code>缓存响应长达 120 秒</code>，并提供<code>验证令牌（x234dff）</code>，在响应过期之后，可以用来验证资源是否被修改。</p>
+<blockquote>
+<p>我在腾讯首页随便找了个 HTTP 请求，我们可以看看下面有 <code>Expires</code> 和 <code>Cache-Control</code> 两个指令。<br><img src="1.png"></p>
+</blockquote>
+<h2 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h2><p>当用户发起一个静态资源请求的时候，浏览器先在本地查找该资源，如果有发现该资源，而且资源还没有过期，就使用这一个资源，完全不会发送 <code>HTTP</code> 请求到服务器。</p>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>让我们假设在缓存的资源过期之后，浏览器又对该资源发起了新请求。<br>首先，浏览器会检查本地缓存并找到之前的响应，但是这个资源已经过期，无法直接使用。此时，浏览器也可以直接发出新请求，获取新的完整响应，但是这样做效率较低，因为如果资源未被更改过，我们就没有理由再去下载与缓存中已有的完全相同的字节。</p>
+<p>现在，问题来了，怎么判断资源未有没有修改过呢？问题的答案就是 <code>ETag</code>，<code>ETag</code> 是一串字符，是服务器会生成的一个随机令牌，我们不用关系 <code>ETag</code> 是怎么生成的。</p>
+<p><img src="3.png" alt=""></p>
+<p>客户端自动在 <code>If-None-Match</code> 请求头部中提供 <code>ETag</code> 令牌，服务器针对当前的资源检查令牌，如果未被修改过，则返回 <code>304 Not Modified</code> 响应，告诉浏览器缓存中的响应未被修改过，可以再延用 <code>120</code> 秒。</p>
+<h2 id="缓存失败"><a href="#缓存失败" class="headerlink" title="缓存失败"></a>缓存失败</h2><p>当服务器发现该请求已经修改，或者这是请求一个新的资源（压根没有缓存），服务器则返回该资源的数据，并且返回 <code>200</code>（成功）或者 <code>404</code>（没有该资源）。</p>
+<h2 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h2><blockquote>
+<p><code>Cache-Control</code> 是一个通用首部指令，可以控制<code>谁</code>在<code>什么条件</code>下可以缓存响应以及可以<code>缓存多久</code>。它在 <code>HTTP/1.1</code> 规范中定义，取代了之前用来定义响应缓存策略的头（例如 <code>Expires</code>）。当前的所有浏览器都支持 <code>Cache-Control</code>，因此，使用它就够了。</p>
+</blockquote>
+<p>指令的参数是可选的,多个指令之间通过<code>“,”</code>分隔。首部字段 <code>Cache-Control</code> 的指令可用于请求及响应时。</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><div class="line"><span class="attribute">Cache-Control</span>: private, max-age=0, no-cache</div></pre></td></tr></table></figure>
+<p><img src="4.png" alt=""></p>
+<h3 id="no-cache"><a href="#no-cache" class="headerlink" title="no-cache"></a>no-cache</h3><figure class="highlight http"><table><tr><td class="code"><pre><div class="line"><span class="attribute">Cache-Control</span>: no-cache</div></pre></td></tr></table></figure>
+<p>因为 <code>Cache-Control</code> 是通用首部，所以会有两种情况。</p>
+<h4 id="（1）客户端发送的请求中如果包含-no-cache-指令"><a href="#（1）客户端发送的请求中如果包含-no-cache-指令" class="headerlink" title="（1）客户端发送的请求中如果包含 no-cache 指令"></a>（1）客户端发送的请求中如果包含 no-cache 指令</h4><p>“中间”的缓存服务器必须把客户端的请求转发给源服务器。</p>
+<h4 id="（2）服务器返回的响应中包含-no-cache-指令"><a href="#（2）服务器返回的响应中包含-no-cache-指令" class="headerlink" title="（2）服务器返回的响应中包含 no-cache 指令"></a>（2）服务器返回的响应中包含 no-cache 指令</h4><ol>
+<li>缓存服务器不能对资源进行缓存</li>
+<li>源服务器以后也将不再对缓存服务器请求中提出的资源有效性进行确认</li>
+<li>且禁止其对响应资源进行缓存操作</li>
+</ol>
+<p><img src="5.png" alt=""></p>
+<h3 id="no-store"><a href="#no-store" class="headerlink" title="no-store"></a>no-store</h3><figure class="highlight http"><table><tr><td class="code"><pre><div class="line"><span class="attribute">Cache-Control</span>: no-store</div></pre></td></tr></table></figure>
+<p>该指令规定不能缓存请求或响应的任一部分。</p>
+<h3 id="public-和-private"><a href="#public-和-private" class="headerlink" title="public 和 private"></a>public 和 private</h3><figure class="highlight http"><table><tr><td class="code"><pre><div class="line"><span class="attribute">Cache-Control</span>: public</div></pre></td></tr></table></figure>
+<p>当指定使用 <code>public</code> 指令时,则明确表明其他用户也可利用缓存。<code>private</code> 只为单个用户缓存，不允许任何中继缓存对其进行缓存。</p>
+<h3 id="max-age"><a href="#max-age" class="headerlink" title="max-age"></a>max-age</h3><p>单位是（秒），响应的最大有效时间值。</p>
+<h2 id="废弃和更新已缓存的响应"><a href="#废弃和更新已缓存的响应" class="headerlink" title="废弃和更新已缓存的响应"></a>废弃和更新已缓存的响应</h2><p>在资源内容更改时，我们可以更改资源的网址，强制用户下载新响应。通常情况下，可以通过在文件名中嵌入文件的指纹码（或版本号）来实现。</p>
+<p>当然，还有更变态的做法，张云龙老师在他的 github 上的这篇文章<a href="https://github.com/fouber/blog/issues/6" target="_blank" rel="external">大公司里怎样开发和部署前端代码？</a></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn" target="_blank" rel="external">HTTP 缓存
+</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络传输/" rel="tag">#网络传输</a>
+          
+            <a href="/tags/HTTP/" rel="tag">#HTTP</a>
+          
+            <a href="/tags/前端优化/" rel="tag">#前端优化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/08/js-object-orented-programing/" rel="next" title="JS - 面向对象编程实践">
+                <i class="fa fa-chevron-left"></i> JS - 面向对象编程实践
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mertens" />
+          <p class="site-author-name" itemprop="name">Mertens</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地缓存"><span class="nav-number">1.</span> <span class="nav-text">本地缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协商缓存"><span class="nav-number">2.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存失败"><span class="nav-number">3.</span> <span class="nav-text">缓存失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache-Control"><span class="nav-number">4.</span> <span class="nav-text">Cache-Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#no-cache"><span class="nav-number">4.1.</span> <span class="nav-text">no-cache</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）客户端发送的请求中如果包含-no-cache-指令"><span class="nav-number">4.1.1.</span> <span class="nav-text">（1）客户端发送的请求中如果包含 no-cache 指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）服务器返回的响应中包含-no-cache-指令"><span class="nav-number">4.1.2.</span> <span class="nav-text">（2）服务器返回的响应中包含 no-cache 指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-store"><span class="nav-number">4.2.</span> <span class="nav-text">no-store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#public-和-private"><span class="nav-number">4.3.</span> <span class="nav-text">public 和 private</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-age"><span class="nav-number">4.4.</span> <span class="nav-text">max-age</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#废弃和更新已缓存的响应"><span class="nav-number">5.</span> <span class="nav-text">废弃和更新已缓存的响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mertens</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
